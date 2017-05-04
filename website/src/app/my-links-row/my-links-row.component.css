@@ -1,0 +1,13 @@
+.row-margin {
+  margin-top: 5vh;
+}
+
+.color-setup-small {
+  background-color: black;
+  height: 8vh;
+
+  color: white;
+
+  opacity: 0.9;
+  border-radius: 5px;
+}
