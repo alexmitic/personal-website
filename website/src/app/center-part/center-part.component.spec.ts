@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FirstRowComponent } from './first-row.component';
+import { CenterPartComponent } from './center-part.component';
 
-describe('FirstRowComponent', () => {
-  let component: FirstRowComponent;
-  let fixture: ComponentFixture<FirstRowComponent>;
+describe('CenterPartComponent', () => {
+  let component: CenterPartComponent;
+  let fixture: ComponentFixture<CenterPartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FirstRowComponent ]
+      declarations: [ CenterPartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FirstRowComponent);
+    fixture = TestBed.createComponent(CenterPartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

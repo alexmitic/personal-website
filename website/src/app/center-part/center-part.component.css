@@ -1,0 +1,61 @@
+h5 {
+  font-size: 1.2em;
+  margin-top: 3vh;
+}
+
+.btn {
+  font-size: 1.7em;
+  font-weight: 500;
+
+  color: orangered;
+  background-color: white;
+  border-color: white;
+}
+
+#margin-button {
+  margin-top: 8vh;
+}
+
+#margin-button:hover {
+  transform: scale(1.1);
+}
+
+#links-margin{
+  margin-top: 8vh;
+}
+
+#scale-icon {
+  transform: scale(0.85);
+}
+
+.same-line {
+  display: inline;
+}
+
+#space-icons {
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
+
+#margin-facts {
+  margin-top: 7vh;
+}
+
+#margin-links {
+  margin-top: 3vh;
+}
+
+.color-scale-git:hover {
+  transform: scale(1.15);
+  color: #6E5494;
+}
+
+.color-scale-linkedin:hover {
+  transform: scale(1.15);
+  color: #0077B5;
+}
+
+.color-scale-pdf:hover {
+  transform: scale(1) !important;
+  color: #FF0000;
+}

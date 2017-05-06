@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FactsRowComponent } from './facts-row.component';
+import { QuicksortComponent } from './quicksort.component';
 
-describe('FactsRowComponent', () => {
-  let component: FactsRowComponent;
-  let fixture: ComponentFixture<FactsRowComponent>;
+describe('QuicksortComponent', () => {
+  let component: QuicksortComponent;
+  let fixture: ComponentFixture<QuicksortComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FactsRowComponent ]
+      declarations: [ QuicksortComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FactsRowComponent);
+    fixture = TestBed.createComponent(QuicksortComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,16 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
-import { FirstRowComponent } from './first-row/first-row.component';
-import { MyLinksRowComponent } from './my-links-row/my-links-row.component';
-import { FactsRowComponent } from './facts-row/facts-row.component';
+import { CenterPartComponent } from './center-part/center-part.component';
+import { QuicksortComponent } from './quicksort/quicksort.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FirstRowComponent,
-    MyLinksRowComponent,
-    FactsRowComponent
+    CenterPartComponent,
+    QuicksortComponent
   ],
   imports: [
     BrowserModule,
