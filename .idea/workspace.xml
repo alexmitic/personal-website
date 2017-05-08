@@ -2,10 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c335273-016c-47ea-8501-751e828007fb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/package.json" afterPath="$PROJECT_DIR$/website/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" afterPath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" afterPath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/.angular-cli.json" afterPath="$PROJECT_DIR$/.angular-cli.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/.editorconfig" afterPath="$PROJECT_DIR$/.editorconfig" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/README.md" afterPath="$PROJECT_DIR$/README kopia.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/e2e/app.e2e-spec.ts" afterPath="$PROJECT_DIR$/e2e/app.e2e-spec.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/e2e/app.po.ts" afterPath="$PROJECT_DIR$/e2e/app.po.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/e2e/tsconfig.e2e.json" afterPath="$PROJECT_DIR$/e2e/tsconfig.e2e.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/karma.conf.js" afterPath="$PROJECT_DIR$/karma.conf.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/protractor.conf.js" afterPath="$PROJECT_DIR$/protractor.conf.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/server.js" afterPath="$PROJECT_DIR$/server.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.css" afterPath="$PROJECT_DIR$/src/app/app.component.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.html" afterPath="$PROJECT_DIR$/src/app/app.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.spec.ts" afterPath="$PROJECT_DIR$/src/app/app.component.spec.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.ts" afterPath="$PROJECT_DIR$/src/app/app.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.module.ts" afterPath="$PROJECT_DIR$/src/app/app.module.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.css" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.html" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.spec.ts" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.spec.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.ts" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.spec.ts" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.spec.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/assets/.gitkeep" afterPath="$PROJECT_DIR$/src/assets/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/environments/environment.prod.ts" afterPath="$PROJECT_DIR$/src/environments/environment.prod.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/environments/environment.ts" afterPath="$PROJECT_DIR$/src/environments/environment.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/favicon.ico" afterPath="$PROJECT_DIR$/src/favicon.ico" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/main.ts" afterPath="$PROJECT_DIR$/src/main.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/polyfills.ts" afterPath="$PROJECT_DIR$/src/polyfills.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/styles.css" afterPath="$PROJECT_DIR$/src/styles.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/test.ts" afterPath="$PROJECT_DIR$/src/test.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/tsconfig.app.json" afterPath="$PROJECT_DIR$/src/tsconfig.app.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/tsconfig.spec.json" afterPath="$PROJECT_DIR$/src/tsconfig.spec.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/typings.d.ts" afterPath="$PROJECT_DIR$/src/typings.d.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/tsconfig.json" afterPath="$PROJECT_DIR$/tsconfig.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/website/tslint.json" afterPath="$PROJECT_DIR$/tslint.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,113 +54,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="quicksort.component.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="81" column="19" lean-forward="false" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
-              <folding>
-                <element signature="n#!!block;n#swap#0;n#QuicksortComponent#0" expanded="false" />
-                <element signature="n#!!block;n#partition#0;n#QuicksortComponent#0" expanded="false" />
-                <element signature="n#!!block;n#quickSort#0;n#QuicksortComponent#0" expanded="false" />
-                <element signature="n#!!block;n#ngOnInit#0;n#QuicksortComponent#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/dist/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="488">
+              <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inline.bundle.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/dist/inline.bundle.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.bundle.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/dist/main.bundle.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9413">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1494265780000" expanded="true" signature="21413:21470" ph="..." />
-                <marker date="1494265780000" expanded="true" signature="22972:23025" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quicksort.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#canvas#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.bundle.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/dist/styles.bundle.js">
+        <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tslint.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/tslint.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="center-part.component.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="center-part.component.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -152,6 +94,7 @@
         <option value="$PROJECT_DIR$/website/src/server.js" />
         <option value="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" />
         <option value="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -163,7 +106,6 @@
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
-    <handled-path value="$PROJECT_DIR$/website/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
@@ -194,86 +136,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="personal-website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="website" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quicksort" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,7 +261,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28018000" />
+    <option name="totallyTimeSpent" value="28095000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="713" extended-state="6" />
@@ -437,45 +299,56 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="83" column="11" lean-forward="false" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
-          <folding>
-            <element signature="n#!!block;n#swap#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#partition#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#quickSort#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#ngOnInit#0;n#QuicksortComponent#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts" />
+    <entry file="file://$PROJECT_DIR$/website/package.json" />
     <entry file="file://$PROJECT_DIR$/website/server/server.js" />
-    <entry file="file://$PROJECT_DIR$/package.json" />
-    <entry file="file://$PROJECT_DIR$/server.js" />
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts">
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/website/tslint.json" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/website/tslint.json" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/tslint.json" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/index.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css" />
+    <entry file="file://$PROJECT_DIR$/website/tslint.json" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app.js" />
+    <entry file="file://$PROJECT_DIR$/website/dist/index.html" />
+    <entry file="file://$PROJECT_DIR$/website/dist/styles.bundle.js" />
+    <entry file="file://$PROJECT_DIR$/website/dist/inline.bundle.js" />
+    <entry file="file://$PROJECT_DIR$/website/dist/main.bundle.js" />
+    <entry file="file://$PROJECT_DIR$/website/server.js" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" />
+    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" />
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -483,381 +356,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="68" lean-forward="false" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!block;n#swap#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#partition#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#quickSort#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#ngOnInit#0;n#QuicksortComponent#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+        <state relative-caret-position="488">
+          <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="1" lean-forward="false" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="26" lean-forward="true" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="1" lean-forward="false" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="6" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#swap#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#partition#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#quickSort#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#ngOnInit#0;n#QuicksortComponent#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="74" lean-forward="false" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="1" lean-forward="false" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!block;n#swap#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#partition#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#quickSort#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#ngOnInit#0;n#QuicksortComponent#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="1" lean-forward="false" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="26" lean-forward="false" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/tslint.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/center-part/center-part.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/dist/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/dist/styles.bundle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/dist/inline.bundle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/dist/main.bundle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9413">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1494265780000" expanded="true" signature="21413:21470" ph="..." />
-            <marker date="1494265780000" expanded="true" signature="22972:23025" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="81" column="19" lean-forward="false" selection-start-line="81" selection-start-column="19" selection-end-line="81" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!block;n#swap#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#partition#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#quickSort#0;n#QuicksortComponent#0" expanded="false" />
-            <element signature="n#!!block;n#ngOnInit#0;n#QuicksortComponent#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
