@@ -2,44 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c335273-016c-47ea-8501-751e828007fb" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/.angular-cli.json" afterPath="$PROJECT_DIR$/.angular-cli.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/.editorconfig" afterPath="$PROJECT_DIR$/.editorconfig" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/README.md" afterPath="$PROJECT_DIR$/README kopia.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/e2e/app.e2e-spec.ts" afterPath="$PROJECT_DIR$/e2e/app.e2e-spec.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/e2e/app.po.ts" afterPath="$PROJECT_DIR$/e2e/app.po.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/e2e/tsconfig.e2e.json" afterPath="$PROJECT_DIR$/e2e/tsconfig.e2e.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/karma.conf.js" afterPath="$PROJECT_DIR$/karma.conf.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/protractor.conf.js" afterPath="$PROJECT_DIR$/protractor.conf.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.css" afterPath="$PROJECT_DIR$/src/app/app.component.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.html" afterPath="$PROJECT_DIR$/src/app/app.component.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.spec.ts" afterPath="$PROJECT_DIR$/src/app/app.component.spec.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.component.ts" afterPath="$PROJECT_DIR$/src/app/app.component.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/app.module.ts" afterPath="$PROJECT_DIR$/src/app/app.module.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.css" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.html" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.spec.ts" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.spec.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/center-part/center-part.component.ts" afterPath="$PROJECT_DIR$/src/app/center-part/center-part.component.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.css" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.html" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.spec.ts" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.spec.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/app/quicksort/quicksort.component.ts" afterPath="$PROJECT_DIR$/src/app/quicksort/quicksort.component.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/assets/.gitkeep" afterPath="$PROJECT_DIR$/src/assets/.gitkeep" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/environments/environment.prod.ts" afterPath="$PROJECT_DIR$/src/environments/environment.prod.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/environments/environment.ts" afterPath="$PROJECT_DIR$/src/environments/environment.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/favicon.ico" afterPath="$PROJECT_DIR$/src/favicon.ico" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/main.ts" afterPath="$PROJECT_DIR$/src/main.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/polyfills.ts" afterPath="$PROJECT_DIR$/src/polyfills.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/styles.css" afterPath="$PROJECT_DIR$/src/styles.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/test.ts" afterPath="$PROJECT_DIR$/src/test.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/tsconfig.app.json" afterPath="$PROJECT_DIR$/src/tsconfig.app.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/tsconfig.spec.json" afterPath="$PROJECT_DIR$/src/tsconfig.spec.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/src/typings.d.ts" afterPath="$PROJECT_DIR$/src/typings.d.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/tsconfig.json" afterPath="$PROJECT_DIR$/tsconfig.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/website/tslint.json" afterPath="$PROJECT_DIR$/tslint.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,8 +20,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+            <state relative-caret-position="406">
+              <caret line="38" column="25" lean-forward="false" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -261,7 +224,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28095000" />
+    <option name="totallyTimeSpent" value="28203000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="713" extended-state="6" />
@@ -358,8 +321,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+        <state relative-caret-position="406">
+          <caret line="38" column="25" lean-forward="false" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
           <folding />
         </state>
       </provider>
