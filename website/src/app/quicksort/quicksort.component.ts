@@ -79,7 +79,7 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
           ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
         }
 
-        this.wait(85);
+        this.wait(55);
 
         requestAnimationFrame(() => {
           this.tick();
