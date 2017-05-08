@@ -9,7 +9,12 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
   context: CanvasRenderingContext2D;
   @ViewChild('myCanvas') myCanvas;
 
-  heights: number[] = [60, 55, 50, 45, 40, 35, 30, 25, 20];
+  heights: number[] = [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                       2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+  restart = true;
 
   constructor() {
   }
@@ -20,39 +25,67 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
 
     this.tick();
   }
+
   tick() {
     let ctx = this.context;
-    ctx.clearRect(0, 0, 350, 225);
-
-    const width = 30;
+    ctx.clearRect(0, 0, 300, 225);
+    const width = 3;
     ctx.fillStyle = '#000';
 
-    for (let i = 0; i <= this.heights.length; i++) {
-      let j = i;
+    if (this.restart) {
+      this.randomHeights();
+      for (let i = 0; i < 100; i++) {
+        ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
+      }
 
-      while (j > 0 && this.heights[j - 1] > this.heights[j]) {
-        const temp = this.heights[j];
-        this.heights[j] = this.heights[j - 1];
-        this.heights[j - 1] = temp;
-        j = j - 1;
-        break;
+      this.wait(500);
+
+      requestAnimationFrame(() => {
+        this.tick();
+      });
+
+      this.restart = false;
+    } else {
+      if (this.sorted()) {
+        ctx.fillStyle = '#7FFF00';
+
+        for (let i = 0; i < 100; i++) {
+          ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
+        }
+
+        this.restart = true;
+
+        requestAnimationFrame(() => {
+          this.tick();
+        });
+
+      } else {
+
+        for (let i = 0; i <= this.heights.length; i++) {
+          let j = i;
+
+          while (j > 0 && this.heights[j - 1] > this.heights[j]) {
+            const temp = this.heights[j];
+            this.heights[j] = this.heights[j - 1];
+            this.heights[j - 1] = temp;
+            j = j - 1;
+            break;
+          }
+        }
+
+        // this.quickSort(0, this.heights.length - 1);
+
+        for (let i = 0; i < 100; i++) {
+          ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
+        }
+
+        this.wait(85);
+
+        requestAnimationFrame(() => {
+          this.tick();
+        });
       }
     }
-
-    const start = new Date().getTime(); 
-    let end = start;
-    while (end < start + 500) {
-      end = new Date().getTime();
-    }
-
-    for (let i = 0; i < 7; i++) {
-      ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
-    }
-
-    requestAnimationFrame(() => {
-      this.tick();
-    });
-
   }
 
   wait(ms) {
@@ -63,19 +96,84 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
     }
   }
 
-
-  sort() {
-    // for (let i = 0; i <= this.list.length; i++) {
-    //   let j = i;
-    //
-    //   while (j > 0 && this.list[j - 1] > this.list[j]) {
-    //     const temp = this.list[j];
-    //     this.list[j] = this.list[j - 1];
-    //     this.list[j - 1] = temp;
-    //     j = j - 1;
-    //   }
-    // }
+  randomHeights() {
+    for (let i = 0; i < 100; i++) {
+      this.heights[i] = this.randomNum();
+    }
   }
+
+  randomNum() {
+    return Math.floor(Math.random() * (225 - 15 + 1) + 15);
+  }
+
+  sorted() {
+    for (let i = 0; i < 99; i++) {
+      if (!(this.heights[i] <= this.heights[i + 1])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  swap(firstIndex, secondIndex) {
+    const temp = this.heights[firstIndex];
+    this.heights[firstIndex] = this.heights[secondIndex];
+    this.heights[secondIndex] = temp;
+  }
+
+  partition ( l, h) {
+    let x = this.heights[h];
+    let i = (l - 1);
+
+    for (let j = l; j <= h - 1; j++) {
+      if (this.heights[j] <= x) {
+        i++;
+        // swap arr[i] and arr[j]
+        this.swap(i, j);
+        return i + 1;
+      }
+    }
+    // swap arr[i+1] and arr[h]
+    this.swap(i + 1, h);
+    return (i + 1);
+}
+
+  quickSort(l, h) {
+    // create auxiliary stack
+    let stack = [];
+
+    // initialize top of stack
+    let top = -1;
+
+    // push initial values in the stack
+    stack[++top] = l;
+    stack[++top] = h;
+
+    // keep popping elements until stack is not empty
+    while (top >= 0) {
+      // pop h and l
+      h = stack[top--];
+      l = stack[top--];
+
+      // set pivot element at it's proper position
+      let p = this.partition(l, h);
+
+      // If there are elements on left side of pivot,
+      // then push left side to stack
+      if ( (p - 1) > l ) {
+        stack[++top] = l;
+        stack[++top] = p - 1;
+      }
+
+      // If there are elements on right side of pivot,
+      // then push right side to stack
+      if ((p + 1) < h ) {
+        stack[++top ] = p + 1;
+        stack[ ++top ] = h;
+      }
+    }
+}
+
   ngOnInit() {
   }
 }
