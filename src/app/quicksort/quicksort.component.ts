@@ -6,6 +6,9 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./quicksort.component.css']
 })
 export class QuicksortComponent implements OnInit, AfterViewInit {
+  sortText = "hidden";
+  sorter = "hidden";
+
   context: CanvasRenderingContext2D;
   @ViewChild('myCanvas') myCanvas;
 
@@ -20,6 +23,8 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.wait(1000)
+    this.sorter = "visible"
     let canvas = this.myCanvas.nativeElement;
     this.context = canvas.getContext('2d');
 
