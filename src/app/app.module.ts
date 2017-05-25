@@ -8,12 +8,14 @@ import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AppComponent } from './app.component';
 import { CenterPartComponent } from './center-part/center-part.component';
 import { QuicksortComponent } from './quicksort/quicksort.component';
+import { LearningComponent } from './learning/learning.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CenterPartComponent,
-    QuicksortComponent
+    QuicksortComponent,
+    LearningComponent
   ],
   imports: [
     BrowserModule,

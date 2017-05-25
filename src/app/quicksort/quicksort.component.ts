@@ -18,15 +18,7 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
 
 
   constructor() {
-    window.addEventListener("load", function () {
-      const start = new Date().getTime();
-      let end = start;
-      while (end < start + 3000) {
-        end = new Date().getTime();
-      }
-      let test = document.getElementById("test")
-      test.style.visibility = "hidden";
-    });
+
   }
 
   ngAfterViewInit() {
