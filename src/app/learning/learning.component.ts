@@ -34,34 +34,34 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
 
     for (let i = 0; i < 10; i++) {
-      this.rewards[i][0] = -Infinity;
+      this.rewards[i][0] = -1000;
     }
 
     for (let i = 90; i < 100; i++) {
-      this.rewards[i][1] = -Infinity;
+      this.rewards[i][1] = -1000;
     }
 
     for (let i = 0; i < 91; i += 10) {
-      this.rewards[i][2] = -Infinity;
+      this.rewards[i][2] = -1000;
     }
 
     for (let i = 9; i < 100; i += 10) {
-      this.rewards[i][3] = -Infinity;
+      this.rewards[i][3] = -1000;
     }
 
-    this.rewards[88][0] = 1;
-    this.rewards[79][2] = 1;
-    this.rewards[68][1] = 1;
-    this.rewards[77][3] = 1;
+    this.rewards[88][0] = 10;
+    this.rewards[79][2] = 10;
+    this.rewards[68][1] = 10;
+    this.rewards[77][3] = 10;
 
-    this.rewards[76][0] = -1;
-    this.rewards[67][0] = -1;
-    this.rewards[67][2] = -1;
-    this.rewards[58][2] = -1;
-    this.rewards[47][1] = -1;
-    this.rewards[46][1] = -1;
-    this.rewards[55][3] = -1;
-    this.rewards[56][3] = -1;
+    this.rewards[76][0] = -10;
+    this.rewards[67][0] = -10;
+    this.rewards[67][2] = -10;
+    this.rewards[58][2] = -10;
+    this.rewards[47][1] = -10;
+    this.rewards[46][1] = -10;
+    this.rewards[55][3] = -10;
+    this.rewards[56][3] = -10;
 
     this.qValues = [];
 
@@ -112,14 +112,16 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
       this.restart = !this.restart;
     } else {
-      if (this.currGrid !== 78 && this.currGrid !== 56 && this.currGrid !== 57 && this.currGrid !== 66 && this.currGrid >= 0 && this.currGrid <= 99) {
+      if (this.currGrid !== 78 && this.currGrid !== 56 && this.currGrid !== 57 && this.currGrid !== 66
+                                                          && this.currGrid >= 0 && this.currGrid <= 99) {
+
         const nextDirection = this.getNextDirection(this.currGrid);
         const nextGrid = this.currGrid + this.stepCorrection(nextDirection);
 
         // Update qValue
         this.qValues[this.currGrid][nextDirection] = this.qValues[this.currGrid][nextDirection] +
           (1 * (this.rewards[this.currGrid][nextDirection] +
-          (0.3 * this.getMaxVal(nextGrid)) +
+          (1 * this.getMaxVal(nextGrid)) +
           this.qValues[this.currGrid][nextDirection]));
 
         this.currGrid = nextGrid;
@@ -127,6 +129,8 @@ export class LearningComponent implements OnInit, AfterViewInit {
         this.restart = !this.restart;
       }
     }
+
+    this.wait(20);
 
     requestAnimationFrame(() => {
       this.tick();
@@ -154,6 +158,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   getNextDirection(currGrid) {
+    // TODO Disable invalid moves
     const values = this.qValues[currGrid];
     let direction = 0;
     let max = values[0];
@@ -210,6 +215,14 @@ export class LearningComponent implements OnInit, AfterViewInit {
       return currGrid;
     } else {
       return currGrid % (yPos * 10);
+    }
+  }
+
+  wait(ms) {
+    const start = new Date().getTime();
+    let end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
     }
   }
 
