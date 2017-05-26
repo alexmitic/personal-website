@@ -21,13 +21,14 @@
       <file leaf-file-name="learning.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/learning/learning.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="786">
-              <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+            <state relative-caret-position="276">
+              <caret line="159" column="29" lean-forward="false" selection-start-line="159" selection-start-column="29" selection-end-line="159" selection-end-column="29" />
               <folding>
                 <element signature="n#!!block;n#constructor#0;n#LearningComponent#0" expanded="false" />
                 <element signature="n#!!block;n#getXGridCoord#0;n#LearningComponent#0" expanded="false" />
                 <element signature="n#!!block;n#getYGridCoord#0;n#LearningComponent#0" expanded="false" />
                 <element signature="n#!!block;n#getNextDirection#0;n#LearningComponent#0" expanded="false" />
+                <element signature="e#3910#5300#0" expanded="false" />
                 <element signature="n#!!block;n#getMaxVal#0;n#LearningComponent#0" expanded="false" />
                 <element signature="n#!!block;n#stepCorrection#0;n#LearningComponent#0" expanded="false" />
                 <element signature="n#!!block;n#gridToYpos#0;n#LearningComponent#0" expanded="false" />
@@ -63,8 +64,8 @@
       <file leaf-file-name="quicksort.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/quicksort/quicksort.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="98" column="3" lean-forward="true" selection-start-line="92" selection-start-column="2" selection-end-line="98" selection-end-column="3" />
+            <state relative-caret-position="1666">
+              <caret line="98" column="3" lean-forward="false" selection-start-line="92" selection-start-column="2" selection-end-line="98" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -167,6 +168,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -257,7 +259,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -377,12 +378,13 @@
       <workItem from="1495401709816" duration="742000" />
       <workItem from="1495730394521" duration="1563000" />
       <workItem from="1495732340836" duration="10130000" />
-      <workItem from="1495816357632" duration="1443000" />
+      <workItem from="1495816357632" duration="1479000" />
+      <workItem from="1495824480989" duration="1991000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44470000" />
+    <option name="totallyTimeSpent" value="46497000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="713" extended-state="6" />
@@ -591,21 +593,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/quicksort/quicksort.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="98" column="3" lean-forward="true" selection-start-line="92" selection-start-column="2" selection-end-line="98" selection-end-column="3" />
+        <state relative-caret-position="1666">
+          <caret line="98" column="3" lean-forward="false" selection-start-line="92" selection-start-column="2" selection-end-line="98" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/learning/learning.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+        <state relative-caret-position="276">
+          <caret line="159" column="29" lean-forward="false" selection-start-line="159" selection-start-column="29" selection-end-line="159" selection-end-column="29" />
           <folding>
             <element signature="n#!!block;n#constructor#0;n#LearningComponent#0" expanded="false" />
             <element signature="n#!!block;n#getXGridCoord#0;n#LearningComponent#0" expanded="false" />
             <element signature="n#!!block;n#getYGridCoord#0;n#LearningComponent#0" expanded="false" />
             <element signature="n#!!block;n#getNextDirection#0;n#LearningComponent#0" expanded="false" />
+            <element signature="e#3910#5300#0" expanded="false" />
             <element signature="n#!!block;n#getMaxVal#0;n#LearningComponent#0" expanded="false" />
             <element signature="n#!!block;n#stepCorrection#0;n#LearningComponent#0" expanded="false" />
             <element signature="n#!!block;n#gridToYpos#0;n#LearningComponent#0" expanded="false" />

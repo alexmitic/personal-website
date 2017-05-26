@@ -158,17 +158,81 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   getNextDirection(currGrid) {
-    // TODO Disable invalid moves
-    const values = this.qValues[currGrid];
-    let direction = 0;
-    let max = values[0];
+    let validDirr = [];
+    switch (currGrid) {
+      case 0: {
+        validDirr.push(1);
+        validDirr.push(3);
+        break;
+      }
 
-    for (let i = 1; i < 4; i++) {
-      if (values[i] > max) {
-        max = values[i];
-        direction = i;
+      case 9: {
+        validDirr.push(1);
+        validDirr.push(2);
+        break;
+      }
+
+      case 99: {
+        validDirr.push(0);
+        validDirr.push(2);
+        break;
+      }
+
+      case 90: {
+        validDirr.push(0);
+        validDirr.push(3);
+        break;
+      }
+
+      default: {
+        if (currGrid < 10) {
+          validDirr.push(1);
+          validDirr.push(2);
+          validDirr.push(3);
+        } else if (currGrid > 89) {
+          validDirr.push(0);
+          validDirr.push(2);
+          validDirr.push(3);
+        } else {
+          for (let i = 10; i < 91; i += 10) {
+            if (currGrid === i) {
+              validDirr.push(1);
+              validDirr.push(0);
+              validDirr.push(3);
+              break;
+            }
+          }
+          if (validDirr.length === 0) {
+            for (let i = 19; i < 91; i += 10) {
+              if (currGrid === i) {
+                validDirr.push(0);
+                validDirr.push(1);
+                validDirr.push(2);
+                break;
+              }
+            }
+          }
+          if (validDirr.length === 0) {
+            validDirr.push(0);
+            validDirr.push(1);
+            validDirr.push(2);
+            validDirr.push(3);
+          }
+        }
       }
     }
+
+    const values = this.qValues[currGrid];
+    let direction = validDirr[0];
+    let max = values[validDirr[0]];
+
+    for (let i = 0; i < validDirr.length; i++) {
+      if (values[validDirr[i]] > max) {
+        max = values[validDirr[i]];
+        direction = validDirr[i];
+      }
+    }
+
     return direction;
   }
 
