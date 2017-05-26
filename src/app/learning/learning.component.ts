@@ -49,10 +49,10 @@ export class LearningComponent implements OnInit, AfterViewInit {
       this.rewards[i][3] = -1000;
     }
 
-    this.rewards[88][0] = 10;
-    this.rewards[79][2] = 10;
-    this.rewards[68][1] = 10;
-    this.rewards[77][3] = 10;
+    this.rewards[88][0] = 100;
+    this.rewards[79][2] = 100;
+    this.rewards[68][1] = 100;
+    this.rewards[77][3] = 100;
 
     this.rewards[76][0] = -10;
     this.rewards[67][0] = -10;
