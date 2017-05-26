@@ -18,7 +18,16 @@ export class LearningComponent implements OnInit, AfterViewInit {
   playerY = 0;
   currGrid = 0;
 
+  illegalMoves: number[] = [78, 56, 57, 66, 71, 27];
+
   restart = true;
+
+  learningRate = 1;
+  discontFactor = 1;
+
+  succses = 0;
+  iter = 0;
+
 
   // Constrols: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
@@ -61,7 +70,15 @@ export class LearningComponent implements OnInit, AfterViewInit {
     this.rewards[47][1] = -10;
     this.rewards[46][1] = -10;
     this.rewards[55][3] = -10;
-    this.rewards[56][3] = -10;
+    this.rewards[70][3] = -10;
+    this.rewards[72][2] = -10;
+    this.rewards[61][1] = -10;
+    this.rewards[81][0] = -10;
+    this.rewards[26][3] = -10;
+    this.rewards[28][2] = -10;
+    this.rewards[17][1] = -10;
+    this.rewards[37][0] = -10;
+
 
     this.qValues = [];
 
@@ -97,6 +114,9 @@ export class LearningComponent implements OnInit, AfterViewInit {
     ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(5), width, heigth);
     ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(5), width, heigth);
     ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(6), width, heigth);
+    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(7), width, heigth);
+    ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(2), width, heigth);
+
 
     // Initiate player
     this.playerY = this.gridToYpos(this.currGrid);
@@ -111,17 +131,28 @@ export class LearningComponent implements OnInit, AfterViewInit {
       this.currGrid = 0;
 
       this.restart = !this.restart;
-    } else {
-      if (this.currGrid !== 78 && this.currGrid !== 56 && this.currGrid !== 57 && this.currGrid !== 66
-                                                          && this.currGrid >= 0 && this.currGrid <= 99) {
 
+      this.iter += 1;
+    } else {
+      if (this.currGrid === 78) {
+        this.succses += 1;
+      } else {
+        for (let i = 0; i < this.illegalMoves.length; i++) {
+          if (this.currGrid === this.illegalMoves[i]) {
+            this.succses = 0;
+            break;
+          }
+        }
+      }
+
+      if (this.checkIfValidMove(this.currGrid)) {
         const nextDirection = this.getNextDirection(this.currGrid);
         const nextGrid = this.currGrid + this.stepCorrection(nextDirection);
 
         // Update qValue
         this.qValues[this.currGrid][nextDirection] = this.qValues[this.currGrid][nextDirection] +
-          (1 * (this.rewards[this.currGrid][nextDirection] +
-          (1 * this.getMaxVal(nextGrid)) +
+          (this.learningRate * (this.rewards[this.currGrid][nextDirection] +
+          (this.discontFactor * this.getMaxVal(nextGrid)) +
           this.qValues[this.currGrid][nextDirection]));
 
         this.currGrid = nextGrid;
@@ -130,7 +161,11 @@ export class LearningComponent implements OnInit, AfterViewInit {
       }
     }
 
-    this.wait(20);
+    // this.wait(20);
+
+    if (this.succses === 10) {
+      console.log(this.iter);
+    }
 
     requestAnimationFrame(() => {
       this.tick();
@@ -196,14 +231,14 @@ export class LearningComponent implements OnInit, AfterViewInit {
         } else {
           for (let i = 10; i < 91; i += 10) {
             if (currGrid === i) {
-              validDirr.push(1);
               validDirr.push(0);
+              validDirr.push(1);
               validDirr.push(3);
               break;
             }
           }
           if (validDirr.length === 0) {
-            for (let i = 19; i < 91; i += 10) {
+            for (let i = 19; i < 90; i += 10) {
               if (currGrid === i) {
                 validDirr.push(0);
                 validDirr.push(1);
@@ -223,8 +258,9 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
 
     const values = this.qValues[currGrid];
-    let direction = validDirr[0];
-    let max = values[validDirr[0]];
+    const index = this.randomNum(validDirr.length - 1);
+    let direction = validDirr[index];
+    let max = values[validDirr[index]];
 
     for (let i = 0; i < validDirr.length; i++) {
       if (values[validDirr[i]] > max) {
@@ -287,6 +323,31 @@ export class LearningComponent implements OnInit, AfterViewInit {
     let end = start;
     while (end < start + ms) {
       end = new Date().getTime();
+    }
+  }
+
+  randomNum(high) {
+    return Math.floor(Math.random() * (high + 1));
+  }
+
+  checkIfValidMove(currGrid) {
+    for (let i = 0; i < this.illegalMoves.length; i++) {
+      if (this.illegalMoves[i] === currGrid) {
+        return false;
+      }
+    }
+
+    if (currGrid < 0 || currGrid > 99) {
+      return false;
+    }
+
+    return true;
+  }
+
+  setNegativReward(grid, illegalMoves) {
+    // TODO make this work, its a good abstraction for later
+    for (let i = 0; i < illegalMoves.length; i++) {
+      this.rewards[grid][illegalMoves[i]] = -10;
     }
   }
 
