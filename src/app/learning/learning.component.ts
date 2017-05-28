@@ -22,8 +22,8 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   restart = true;
 
-  learningRate = 1;
-  discontFactor = 1;
+  learningRate = 0.9;
+  discontFactor = 0.9;
 
   succses = 0;
   iter = 0;
@@ -38,7 +38,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     for (let i = 0; i < 100; i++) {
       for (let j = 0; j < 4; j++) {
-        this.rewards[i][j] = -0.04;
+        this.rewards[i][j] = -1;
       }
     }
 
@@ -58,10 +58,10 @@ export class LearningComponent implements OnInit, AfterViewInit {
       this.rewards[i][3] = -1000;
     }
 
-    this.rewards[88][0] = 100;
-    this.rewards[79][2] = 100;
-    this.rewards[68][1] = 100;
-    this.rewards[77][3] = 100;
+    this.rewards[88][0] = 10;
+    this.rewards[79][2] = 10;
+    this.rewards[68][1] = 10;
+    this.rewards[77][3] = 10;
 
     this.rewards[76][0] = -10;
     this.rewards[67][0] = -10;
@@ -160,8 +160,6 @@ export class LearningComponent implements OnInit, AfterViewInit {
         this.restart = !this.restart;
       }
     }
-
-    // this.wait(20);
 
     if (this.succses === 10) {
       console.log(this.iter);
