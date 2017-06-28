@@ -40,8 +40,6 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
         ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
       }
 
-      this.wait(200);
-
       requestAnimationFrame(() => {
         this.tick();
       });
@@ -49,11 +47,11 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
       this.restart = false;
     } else {
       if (this.sorted()) {
-        ctx.fillStyle = '#7FFF00';
-
-        for (let i = 0; i < 100; i++) {
-          ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
-        }
+        // ctx.fillStyle = '#7FFF00';
+        //
+        // for (let i = 0; i < 100; i++) {
+        //   ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);
+        // }
 
         this.restart = true;
 
@@ -74,8 +72,6 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
             break;
           }
         }
-
-        // this.quickSort(0, this.heights.length - 1);
 
         for (let i = 0; i < 100; i++) {
           ctx.fillRect(width * i, 225 - this.heights[i], width, this.heights[i]);

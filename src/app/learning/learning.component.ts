@@ -18,75 +18,42 @@ export class LearningComponent implements OnInit, AfterViewInit {
   playerY = 0;
   currGrid = 0;
 
-  illegalMoves: number[] = [78, 56, 57, 66, 71, 27];
+  illegalMoves: number[] = [];
 
   restart = true;
 
-  learningRate = 0.9;
-  discontFactor = 0.9;
+  learningRate = 1;
+  discontFactor = 0.3;
 
-  succses = 0;
+  succses = 1;
   iter = 0;
-
 
   // Constrols: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
     this.rewards = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 48; i++) {
       this.rewards[i] = [];
     }
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 48; i++) {
       for (let j = 0; j < 4; j++) {
-        this.rewards[i][j] = -1;
+        this.rewards[i][j] = -0.04;
       }
     }
 
-    for (let i = 0; i < 10; i++) {
-      this.rewards[i][0] = -1000;
-    }
-
-    for (let i = 90; i < 100; i++) {
-      this.rewards[i][1] = -1000;
-    }
-
-    for (let i = 0; i < 91; i += 10) {
-      this.rewards[i][2] = -1000;
-    }
-
-    for (let i = 9; i < 100; i += 10) {
-      this.rewards[i][3] = -1000;
-    }
-
-    this.rewards[88][0] = 10;
-    this.rewards[79][2] = 10;
-    this.rewards[68][1] = 10;
-    this.rewards[77][3] = 10;
-
-    this.rewards[76][0] = -10;
-    this.rewards[67][0] = -10;
-    this.rewards[67][2] = -10;
-    this.rewards[58][2] = -10;
-    this.rewards[47][1] = -10;
-    this.rewards[46][1] = -10;
-    this.rewards[55][3] = -10;
-    this.rewards[70][3] = -10;
-    this.rewards[72][2] = -10;
-    this.rewards[61][1] = -10;
-    this.rewards[81][0] = -10;
-    this.rewards[26][3] = -10;
-    this.rewards[28][2] = -10;
-    this.rewards[17][1] = -10;
-    this.rewards[37][0] = -10;
+    this.rewards[30][0] = 10;
+    this.rewards[23][2] = 10;
+    this.rewards[14][1] = 10;
+    this.rewards[21][3] = 10;
 
 
     this.qValues = [];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 48; i++) {
       this.qValues[i] = [];
     }
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 48; i++) {
       for (let j = 0; j < 4; j++) {
         this.qValues[i][j] = 0;
       }
@@ -104,21 +71,40 @@ export class LearningComponent implements OnInit, AfterViewInit {
     let ctx = this.context;
     const width = 25;
     const heigth = 25;
-    ctx.clearRect(0, 0, 250, 250);
+    ctx.clearRect(0, 0, 200, 150);
 
     // Initiate starting field
     ctx.fillStyle = 'green';
-    ctx.fillRect(this.getXGridCoord(8), this.getYGridCoord(7), width, heigth);
+    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), width, heigth);
 
-    ctx.fillStyle = 'red';
-    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(5), width, heigth);
-    ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(5), width, heigth);
-    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(6), width, heigth);
-    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(7), width, heigth);
-    ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(2), width, heigth);
+    // ctx.fillStyle = 'red';
+    //
+    // // First row
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(0), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(5), this.getYGridCoord(0), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(0), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(0), width, heigth);
+    //
+    // // Second row
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(1), width, heigth);
+    //
+    // // Third row
+    // ctx.fillRect(this.getXGridCoord(0), this.getYGridCoord(2), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(2), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), width, heigth);
+    //
+    // // Fourth row
+    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(3), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(3), width, heigth);
+    //
+    // // Fifth row
+    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(4), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(2), this.getYGridCoord(4), width, heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(4), width, heigth);
 
 
-    // Initiate player
+    // Draw player
     this.playerY = this.gridToYpos(this.currGrid);
     this.playerX = this.gridToXpos(this.currGrid, this.playerY);
 
@@ -131,38 +117,19 @@ export class LearningComponent implements OnInit, AfterViewInit {
       this.currGrid = 0;
 
       this.restart = !this.restart;
-
-      this.iter += 1;
     } else {
-      if (this.currGrid === 78) {
+      if (this.currGrid === 22) {
+        this.restart = true;
         this.succses += 1;
       } else {
-        for (let i = 0; i < this.illegalMoves.length; i++) {
-          if (this.currGrid === this.illegalMoves[i]) {
-            this.succses = 0;
-            break;
-          }
-        }
-      }
-
-      if (this.checkIfValidMove(this.currGrid)) {
-        const nextDirection = this.getNextDirection(this.currGrid);
+        const nextDirection = this.getNextDirection();
         const nextGrid = this.currGrid + this.stepCorrection(nextDirection);
 
         // Update qValue
-        this.qValues[this.currGrid][nextDirection] = this.qValues[this.currGrid][nextDirection] +
-          (this.learningRate * (this.rewards[this.currGrid][nextDirection] +
-          (this.discontFactor * this.getMaxVal(nextGrid)) +
-          this.qValues[this.currGrid][nextDirection]));
+        this.updateReward(nextDirection, nextGrid)
 
         this.currGrid = nextGrid;
-      } else {
-        this.restart = !this.restart;
       }
-    }
-
-    if (this.succses === 10) {
-      console.log(this.iter);
     }
 
     requestAnimationFrame(() => {
@@ -190,75 +157,13 @@ export class LearningComponent implements OnInit, AfterViewInit {
     return yPos;
   }
 
-  getNextDirection(currGrid) {
-    let validDirr = [];
-    switch (currGrid) {
-      case 0: {
-        validDirr.push(1);
-        validDirr.push(3);
-        break;
-      }
+  getNextDirection() {
+    const validDirr = this.getVaildDirr();
 
-      case 9: {
-        validDirr.push(1);
-        validDirr.push(2);
-        break;
-      }
-
-      case 99: {
-        validDirr.push(0);
-        validDirr.push(2);
-        break;
-      }
-
-      case 90: {
-        validDirr.push(0);
-        validDirr.push(3);
-        break;
-      }
-
-      default: {
-        if (currGrid < 10) {
-          validDirr.push(1);
-          validDirr.push(2);
-          validDirr.push(3);
-        } else if (currGrid > 89) {
-          validDirr.push(0);
-          validDirr.push(2);
-          validDirr.push(3);
-        } else {
-          for (let i = 10; i < 91; i += 10) {
-            if (currGrid === i) {
-              validDirr.push(0);
-              validDirr.push(1);
-              validDirr.push(3);
-              break;
-            }
-          }
-          if (validDirr.length === 0) {
-            for (let i = 19; i < 90; i += 10) {
-              if (currGrid === i) {
-                validDirr.push(0);
-                validDirr.push(1);
-                validDirr.push(2);
-                break;
-              }
-            }
-          }
-          if (validDirr.length === 0) {
-            validDirr.push(0);
-            validDirr.push(1);
-            validDirr.push(2);
-            validDirr.push(3);
-          }
-        }
-      }
-    }
-
-    const values = this.qValues[currGrid];
+    const values = this.qValues[this.currGrid];
     const index = this.randomNum(validDirr.length - 1);
     let direction = validDirr[index];
-    let max = values[validDirr[index]];
+    let max = values[direction];
 
     for (let i = 0; i < validDirr.length; i++) {
       if (values[validDirr[i]] > max) {
@@ -271,26 +176,24 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   getMaxVal(currGrid) {
-    if (currGrid !== 78 && currGrid !== 56 && currGrid !== 57 && currGrid !== 66 && currGrid >= 0 && currGrid <= 99) {
-      const values = this.qValues[currGrid];
-      let max = values[0];
+    const validDirr = this.getVaildDirr();
 
-      for (let i = 1; i < 4; i++) {
-        if (values[i] > max) {
-          max = values[i];
-        }
+    const values = this.qValues[currGrid];
+    let max = values[validDirr[0]];
+
+    for (let i = 1; i < validDirr.length; i++) {
+      if (values[validDirr[i]] > max) {
+        max = values[i];
       }
-      return max;
-    } else {
-     return -1;
     }
+    return max;
   }
 
   stepCorrection(direction) {
     if (direction === 0) {
-      return -10;
+      return -8;
     } else if (direction === 1) {
-      return 10;
+      return 8;
     } else if (direction === 2) {
       return -1;
     } else {
@@ -300,7 +203,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   gridToYpos(currGrid) {
     let yPos = 0;
-    for (let i = 10; i < 101; i += 10) {
+    for (let i = 8; i < 49; i += 8) {
       if (currGrid < i) {
         return yPos;
       }
@@ -309,10 +212,10 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   gridToXpos(currGrid, yPos) {
-    if (currGrid < 10) {
+    if (currGrid < 8) {
       return currGrid;
     } else {
-      return currGrid % (yPos * 10);
+      return currGrid % (yPos * 8);
     }
   }
 
@@ -331,22 +234,189 @@ export class LearningComponent implements OnInit, AfterViewInit {
   checkIfValidMove(currGrid) {
     for (let i = 0; i < this.illegalMoves.length; i++) {
       if (this.illegalMoves[i] === currGrid) {
-        return false;
+        return true;
       }
     }
 
-    if (currGrid < 0 || currGrid > 99) {
-      return false;
-    }
-
-    return true;
+    return false;
   }
 
-  setNegativReward(grid, illegalMoves) {
-    // TODO make this work, its a good abstraction for later
-    for (let i = 0; i < illegalMoves.length; i++) {
-      this.rewards[grid][illegalMoves[i]] = -10;
+  updateReward(nextDirr, nextGrid) {
+    const r = this.rewards[this.currGrid][nextDirr];
+    const max = this.getMaxVal(nextGrid);
+    this.learningRate = Math.pow(this.succses, -0.1);
+
+    this.qValues[this.currGrid][nextDirr] = this.qValues[this.currGrid][nextDirr] + this.learningRate * (r + this.discontFactor * max + this.qValues[this.currGrid][nextDirr]);
+
+    // this.qValues[this.currGrid][nextDirr] *= 1 - this.learningRate;
+    // this.qValues[this.currGrid][nextDirr] += this.learningRate * (r + this.discontFactor * max);
+
+  }
+
+  getVaildDirr() {
+    let validDirr = [];
+    switch (this.currGrid) {
+      case 0: {
+        validDirr.push(1);
+        validDirr.push(3);
+        break;
+      }
+
+      case 7: {
+        validDirr.push(1);
+        validDirr.push(2);
+        break;
+      }
+
+      case 40: {
+        validDirr.push(0);
+        validDirr.push(3);
+        break;
+      }
+
+      case 47: {
+        validDirr.push(0);
+        validDirr.push(2);
+        break;
+      }
+
+      // case 3: {
+      //   validDirr.push(1);
+      //   validDirr.push(2);
+      //   break;
+      // }
+      //
+      // case 8: {
+      //   validDirr.push(0);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 9: {
+      //   validDirr.push(0);
+      //   validDirr.push(2);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 11: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   validDirr.push(2);
+      //   break;
+      // }
+      //
+      // case 13: {
+      //   validDirr.push(1);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 14: {
+      //   validDirr.push(1);
+      //   validDirr.push(2);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 15: {
+      //   validDirr.push(1);
+      //   validDirr.push(2);
+      //   break;
+      // }
+      //
+      // case 18: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 19: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   validDirr.push(2);
+      //   break;
+      // }
+      //
+      // case 21: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 24: {
+      //   validDirr.push(1);
+      //   break;
+      // }
+      //
+      // case 26: {
+      //   validDirr.push(0);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 27: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   validDirr.push(2);
+      //   break;
+      // }
+      //
+      // case 29: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   validDirr.push(3);
+      //   break;
+      // }
+      //
+      // case 32: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   break;
+      // }
+      //
+      // case 35: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   break;
+      // }
+      //
+      // case 37: {
+      //   validDirr.push(0);
+      //   validDirr.push(1);
+      //   validDirr.push(3);
+      //   break;
+      // }
+
+      default: {
+        if (this.currGrid < 8) {
+          validDirr.push(1);
+          validDirr.push(2);
+          validDirr.push(3);
+        } else if (this.currGrid > 39) {
+            validDirr.push(0);
+            validDirr.push(2);
+            validDirr.push(3);
+        } else if (this.currGrid % 8 === 0) {
+            validDirr.push(0);
+            validDirr.push(1);
+            validDirr.push(3);
+        } else if (this.currGrid % 7 === 0) {
+            validDirr.push(0);
+            validDirr.push(1);
+            validDirr.push(2);
+        } else {
+          validDirr.push(0);
+          validDirr.push(1);
+          validDirr.push(2);
+          validDirr.push(3);
+        }
+      }
     }
+
+    return validDirr;
   }
 
   ngOnInit() {
