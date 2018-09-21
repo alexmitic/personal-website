@@ -9,6 +9,9 @@ export class LearningComponent implements OnInit, AfterViewInit {
   context: CanvasRenderingContext2D;
   @ViewChild('myCanvas') myCanvas;
 
+  width: number;
+  heigth: number;
+
   rewards: number[][];
   qValues: number[][];
   //  States: |0|1|
@@ -25,11 +28,14 @@ export class LearningComponent implements OnInit, AfterViewInit {
   learningRate = 1;
   discontFactor = 0.3;
 
-  succses = 1;
-  iter = 0;
+  success = 1;
 
   // Constrols: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
+
+    this.width = 25;
+    this.heigth = 25;
+
     this.rewards = [];
     for (let i = 0; i < 48; i++) {
       this.rewards[i] = [];
@@ -61,56 +67,42 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let canvas = this.myCanvas.nativeElement;
+    const canvas = this.myCanvas.nativeElement;
     this.context = canvas.getContext('2d');
 
-    this.tick();
+    const ctx = this.context;
+
+    ctx.fillStyle = 'red';
+
+    // First row
+    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(0), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(5), this.getYGridCoord(0), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(0), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(0), this.width, this.heigth);
+
+    // Second row
+    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(1), this.width, this.heigth);
+
+    // Third row
+    ctx.fillRect(this.getXGridCoord(0), this.getYGridCoord(2), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(2), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
+
+    // Fourth row
+    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(3), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(3), this.width, this.heigth);
+
+    // Fifth row
+    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(4), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(2), this.getYGridCoord(4), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(4), this.width, this.heigth);
+
+
+    // this.tick();
   }
 
   tick() {
-    let ctx = this.context;
-    const width = 25;
-    const heigth = 25;
-    ctx.clearRect(0, 0, 200, 150);
-
-    // Initiate starting field
-    ctx.fillStyle = 'green';
-    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), width, heigth);
-
-    // ctx.fillStyle = 'red';
-    //
-    // // First row
-    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(0), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(5), this.getYGridCoord(0), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(0), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(0), width, heigth);
-    //
-    // // Second row
-    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(1), width, heigth);
-    //
-    // // Third row
-    // ctx.fillRect(this.getXGridCoord(0), this.getYGridCoord(2), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(2), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), width, heigth);
-    //
-    // // Fourth row
-    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(3), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(3), width, heigth);
-    //
-    // // Fifth row
-    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(4), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(2), this.getYGridCoord(4), width, heigth);
-    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(4), width, heigth);
-
-
-    // Draw player
-    this.playerY = this.gridToYpos(this.currGrid);
-    this.playerX = this.gridToXpos(this.currGrid, this.playerY);
-
-    ctx.fillStyle = 'black';
-    ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), width, heigth);
-
     if (this.restart) {
       this.playerY = 0;
       this.playerX = 0;
@@ -120,17 +112,31 @@ export class LearningComponent implements OnInit, AfterViewInit {
     } else {
       if (this.currGrid === 22) {
         this.restart = true;
-        this.succses += 1;
+        this.success += 1;
       } else {
         const nextDirection = this.getNextDirection();
         const nextGrid = this.currGrid + this.stepCorrection(nextDirection);
 
         // Update qValue
-        this.updateReward(nextDirection, nextGrid)
+        this.updateReward(nextDirection, nextGrid);
 
         this.currGrid = nextGrid;
       }
     }
+    let ctx = this.context;
+
+    ctx.clearRect(0, 0, 200, 150);
+    // Initiate starting field
+    ctx.fillStyle = 'green';
+
+    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), this.width, this.heigth);
+    // Draw player
+    this.playerY = this.gridToYpos(this.currGrid);
+
+    this.playerX = this.gridToXpos(this.currGrid, this.playerY);
+    ctx.fillStyle = 'black';
+
+    ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), this.width, this.heigth);
 
     requestAnimationFrame(() => {
       this.tick();
@@ -244,7 +250,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
   updateReward(nextDirr, nextGrid) {
     const r = this.rewards[this.currGrid][nextDirr];
     const max = this.getMaxVal(nextGrid);
-    this.learningRate = Math.pow(this.succses, -0.1);
+    this.learningRate = Math.pow(this.success, -0.1);
 
     this.qValues[this.currGrid][nextDirr] = this.qValues[this.currGrid][nextDirr] + this.learningRate * (r + this.discontFactor * max + this.qValues[this.currGrid][nextDirr]);
 
