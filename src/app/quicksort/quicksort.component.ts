@@ -50,7 +50,7 @@ export class QuicksortComponent implements OnInit, AfterViewInit {
         // ctx.fillStyle = '#7FFF00';
         //
         // for (let i = 0; i < 100; i++) {
-        //   ctx.fillCurrentRect(width * i, 225 - this.heights[i], width, this.heights[i]);
+        //   ctx.fillCurrentRect(WIDTH * i, 225 - this.heights[i], WIDTH, this.heights[i]);
         // }
 
         this.restart = true;

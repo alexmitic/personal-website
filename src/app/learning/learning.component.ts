@@ -9,8 +9,15 @@ export class LearningComponent implements OnInit, AfterViewInit {
   context: CanvasRenderingContext2D;
   @ViewChild('myCanvas') myCanvas;
 
-  width: number;
-  heigth: number;
+  // Colors
+  readonly GOAL_COLOR: string;
+  readonly PLAYER_COLOR: string;
+  readonly WALL_COLOR: string;
+  readonly DEFAULT_BOX_COLOR: string;
+
+  // Dimensions
+  readonly WIDTH: number;
+  readonly HEIGHT: number;
 
   rewards: number[][];
   qValues: number[][];
@@ -29,8 +36,13 @@ export class LearningComponent implements OnInit, AfterViewInit {
   // Constrols: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
 
-    this.width = 25;
-    this.heigth = 25;
+    // Initiate colors
+    this.GOAL_COLOR = 'green';
+    this.PLAYER_COLOR = this.WALL_COLOR = 'black';
+    this.DEFAULT_BOX_COLOR = 'white';
+
+    this.WIDTH = 25;
+    this.HEIGHT = 25;
 
     this.rewards = [];
     for (let i = 0; i < 48; i++) {
@@ -70,36 +82,36 @@ export class LearningComponent implements OnInit, AfterViewInit {
     const ctx = this.context;
 
     // Initiate goal field
-    ctx.fillStyle = 'green';
+    ctx.fillStyle = this.GOAL_COLOR;
 
-    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
 
     // Initiate walls
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = this.WALL_COLOR;
 
     // // First row
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(0), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(5), this.getYGridCoord(0), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(6), this.getYGridCoord(0), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(7), this.getYGridCoord(0), this.width, this.heigth);
+    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(5), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(6), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(7), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
 //
     // // Second row
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(1), this.width, this.heigth);
+    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(1), this.WIDTH, this.HEIGHT);
 //
     // // Third row
-    // ctx.fillCurrentRect(this.getXGridCoord(0), this.getYGridCoord(2), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(2), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
+    // ctx.fillCurrentRect(this.getXGridCoord(0), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
 //
     // // Fourth row
-    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(3), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(3), this.width, this.heigth);
+    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(3), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(3), this.WIDTH, this.HEIGHT);
 //
     // // Fifth row
-    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(4), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(2), this.getYGridCoord(4), this.width, this.heigth);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(4), this.width, this.heigth);
+    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(4), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(2), this.getYGridCoord(4), this.WIDTH, this.HEIGHT);
+    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(4), this.WIDTH, this.HEIGHT);
 
 
     this.tick();
@@ -113,9 +125,9 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     if (this.currGrid === 22) {
       nextGrid = 0;
-      reverseColor = 'green';
+      reverseColor = this.GOAL_COLOR;
     } else {
-      reverseColor = 'white';
+      reverseColor = this.DEFAULT_BOX_COLOR;
 
       const nextDirection = this.getNextDirection();
       nextGrid = this.currGrid + this.stepCorrection(nextDirection);
@@ -412,7 +424,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     const ctx = this.context;
     ctx.fillStyle = color;
 
-    ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), this.width, this.heigth);
+    ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), this.WIDTH, this.HEIGHT);
   }
 
   ngOnInit() {
