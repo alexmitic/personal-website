@@ -19,6 +19,9 @@ export class LearningComponent implements OnInit, AfterViewInit {
   readonly WIDTH: number;
   readonly HEIGHT: number;
 
+  // States
+  readonly GOAL_GRID: number;
+
   rewards: number[][];
   qValues: number[][];
   //  States: |0|1|
@@ -41,8 +44,12 @@ export class LearningComponent implements OnInit, AfterViewInit {
     this.PLAYER_COLOR = this.WALL_COLOR = 'black';
     this.DEFAULT_BOX_COLOR = 'white';
 
+    // Initiate dimensions
     this.WIDTH = 25;
     this.HEIGHT = 25;
+
+    // Initiate states
+    this.GOAL_GRID = 22;
 
     this.rewards = [];
     for (let i = 0; i < 48; i++) {
@@ -123,7 +130,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     let nextGrid: number;
     let reverseColor: string;
 
-    if (this.currGrid === 22) {
+    if (this.currGrid === this.GOAL_GRID) {
       nextGrid = 0;
       reverseColor = this.GOAL_COLOR;
     } else {
