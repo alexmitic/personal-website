@@ -23,8 +23,6 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   illegalMoves: number[] = [];
 
-  restart = true;
-
   learningRate = 1;
   discontFactor = 0.3;
 
@@ -81,62 +79,65 @@ export class LearningComponent implements OnInit, AfterViewInit {
     // Initiate walls
     ctx.fillStyle = 'black';
 
-    // First row
-    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(0), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(5), this.getYGridCoord(0), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(0), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(0), this.width, this.heigth);
+    // // First row
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(0), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(5), this.getYGridCoord(0), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(0), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(7), this.getYGridCoord(0), this.width, this.heigth);
+//
+    // // Second row
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(1), this.width, this.heigth);
+//
+    // // Third row
+    // ctx.fillRect(this.getXGridCoord(0), this.getYGridCoord(2), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(2), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
+//
+    // // Fourth row
+    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(3), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(3), this.width, this.heigth);
+//
+    // // Fifth row
+    // ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(4), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(2), this.getYGridCoord(4), this.width, this.heigth);
+    // ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(4), this.width, this.heigth);
 
-    // Second row
-    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(1), this.width, this.heigth);
 
-    // Third row
-    ctx.fillRect(this.getXGridCoord(0), this.getYGridCoord(2), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(2), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(2), this.width, this.heigth);
-
-    // Fourth row
-    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(3), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(3), this.width, this.heigth);
-
-    // Fifth row
-    ctx.fillRect(this.getXGridCoord(1), this.getYGridCoord(4), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(2), this.getYGridCoord(4), this.width, this.heigth);
-    ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(4), this.width, this.heigth);
-
-
-    // this.tick();
+    this.tick();
   }
 
   tick() {
-    if (this.restart) {
-      this.playerY = 0;
-      this.playerX = 0;
-      this.currGrid = 0;
+    const ctx = this.context;
 
-      this.restart = !this.restart;
-    } else if (this.currGrid === 22) {
-        this.restart = true;
-        this.success += 1;
+    let nextGrid: number;
+    let reverseColor: string;
+
+    if (this.currGrid === 22) {
+      nextGrid = 0;
+      reverseColor = 'green';
     } else {
-        const nextDirection = this.getNextDirection();
-        const nextGrid = this.currGrid + this.stepCorrection(nextDirection);
+      reverseColor = 'white';
 
-        // Update qValue
-        this.updateReward(nextDirection, nextGrid);
+      const nextDirection = this.getNextDirection();
+      nextGrid = this.currGrid + this.stepCorrection(nextDirection);
 
-        this.currGrid = nextGrid;
+      // Update qValue
+      this.updateReward(nextDirection, nextGrid);
     }
 
-    let ctx = this.context;
+    // Reverse color of current box
+    ctx.fillStyle = reverseColor;
+    ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), this.width, this.heigth);
 
-    ctx.clearRect(0, 0, 200, 150);
+    // Set next gird to draw
+    this.currGrid = nextGrid;
 
     // Draw player
     this.playerY = this.gridToYpos(this.currGrid);
 
     this.playerX = this.gridToXpos(this.currGrid, this.playerY);
+
     ctx.fillStyle = 'black';
 
     ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), this.width, this.heigth);
