@@ -6,6 +6,10 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./learning.component.css']
 })
 export class LearningComponent implements OnInit, AfterViewInit {
+
+  // TODO Valid directions should be some kind of hashmap (or similar structure) instead of the current switch statement
+  // TODO Automatise the creating of the maze so that you only need to set the girds of walls and goal.
+
   context: CanvasRenderingContext2D;
   @ViewChild('canvas') maze;
 
@@ -23,7 +27,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
   readonly GOAL_GRID: number;
   readonly REWARDS: number[][];
 
-  VALID_DIRECTIONS: number[][]; // Valid directions depend on the maze and are therefore not readonly
+  VALID_DIRECTIONS: number[][]; // Valid directions depends on the maze and is therefore not readonly
 
   qValues: number[][];
 
