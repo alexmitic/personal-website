@@ -7,7 +7,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 })
 export class LearningComponent implements OnInit, AfterViewInit {
   context: CanvasRenderingContext2D;
-  @ViewChild('myCanvas') myCanvas;
+  @ViewChild('canvas') maze;
 
   // Colors
   readonly GOAL_COLOR: string;
@@ -22,6 +22,8 @@ export class LearningComponent implements OnInit, AfterViewInit {
   // States
   readonly GOAL_GRID: number;
   readonly REWARDS: number[][];
+
+  VALID_DIRECTIONS: number[][]; // Valid directions depend on the maze and are therefore not readonly
 
   qValues: number[][];
 
@@ -96,7 +98,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const canvas = this.myCanvas.nativeElement;
+    const canvas = this.maze.nativeElement;
     this.context = canvas.getContext('2d');
 
     const ctx = this.context;
@@ -104,34 +106,34 @@ export class LearningComponent implements OnInit, AfterViewInit {
     // Initiate goal field
     ctx.fillStyle = this.GOAL_COLOR;
 
-    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
+    ctx.fillRect(this.getXGridCord(this.GOAL_GRID), this.getYGridCord(this.GOAL_GRID), this.WIDTH, this.HEIGHT);
 
     // Initiate walls
     ctx.fillStyle = this.WALL_COLOR;
 
     // // First row
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(5), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(6), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(7), this.getYGridCoord(0), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(5), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(6), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(7), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
 //
     // // Second row
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(1), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(1), this.WIDTH, this.HEIGHT);
 //
     // // Third row
-    // ctx.fillCurrentRect(this.getXGridCoord(0), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(2), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(0), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(1), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
 //
     // // Fourth row
-    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(3), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(3), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(1), this.getYGridCord(3), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(3), this.WIDTH, this.HEIGHT);
 //
     // // Fifth row
-    // ctx.fillCurrentRect(this.getXGridCoord(1), this.getYGridCoord(4), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(2), this.getYGridCoord(4), this.WIDTH, this.HEIGHT);
-    // ctx.fillCurrentRect(this.getXGridCoord(4), this.getYGridCoord(4), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(1), this.getYGridCord(4), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(2), this.getYGridCord(4), this.WIDTH, this.HEIGHT);
+    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(4), this.WIDTH, this.HEIGHT);
 
 
     this.tick();
@@ -157,39 +159,25 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
 
     // Reverse color of current box
-    this.fillCurrentRect(reverseColor);
+    this.fillRect(this.currGrid, reverseColor);
 
     // Set next gird to draw
     this.currGrid = nextGrid;
-    this.playerX = this.gridToXpos();
-    this.playerY = this.gridToYpos();
 
     // Draw player
-    this.fillCurrentRect('black');
+    this.fillRect(this.currGrid, 'black');
 
     requestAnimationFrame(() => {
       this.tick();
     });
   }
 
-  getXGridCoord(x): number {
-    let xPos = 0;
-
-    for (let i = 0; i < x; i++) {
-      xPos = xPos + 25;
-    }
-
-    return xPos;
+  getXGridCord(currGrid: number): number {
+    return this.gridToXpos(currGrid) * 25;
   }
 
-  getYGridCoord(y): number {
-    let yPos = 0;
-
-    for (let i = 0; i < y; i++) {
-      yPos = yPos + 25;
-    }
-
-    return yPos;
+  getYGridCord(currGrid: number): number {
+    return this.gridToYpos(currGrid) * 25;
   }
 
   getNextDirection(): number {
@@ -236,18 +224,18 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
   }
 
-  gridToYpos(): number {
+  gridToYpos(currGrid: number): number {
     let yPos = 0;
     for (let i = 8; i < 49; i += 8) {
-      if (this.currGrid < i) {
+      if (currGrid < i) {
         return yPos;
       }
       yPos += 1;
     }
   }
 
-  gridToXpos(): number {
-    return this.currGrid % 8;
+  gridToXpos(currGrid: number): number {
+    return currGrid % 8;
   }
 
   wait(ms): void {
@@ -441,11 +429,11 @@ export class LearningComponent implements OnInit, AfterViewInit {
     return validDirr;
   }
 
-  fillCurrentRect(color: string): void {
+  fillRect(currGird: number, color: string): void {
     const ctx = this.context;
     ctx.fillStyle = color;
 
-    ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), this.WIDTH, this.HEIGHT);
+    ctx.fillRect(this.getXGridCord(currGird), this.getYGridCord(currGird), this.WIDTH, this.HEIGHT);
   }
 
   ngOnInit(): void {
