@@ -21,23 +21,34 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   // States
   readonly GOAL_GRID: number;
+  readonly REWARDS: number[][];
 
-  rewards: number[][];
   qValues: number[][];
+
   //  States: |0|1|
   //          |2|3|
 
-  playerX = 0;
-  playerY = 0;
-  currGrid = 0;
+  // Game values
+  playerX: number;
+  playerY: number;
+  currGrid: number;
 
-  learningRate = 1;
-  discountFactor = 0.3;
+  LEARNING_RATE: number; // Learning rate is now readonly as it changes during the game
+
+  readonly DISCOUNT_FACTOR: number;
 
   success = 1;
 
   // Controls: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
+
+    // Initiate game values
+    this.playerX = 0;
+    this.playerY = 0;
+    this.currGrid = 0;
+
+    this.LEARNING_RATE = 1;
+    this.DISCOUNT_FACTOR = 0.3;
 
     // Initiate colors
     this.GOAL_COLOR = 'green';
@@ -51,22 +62,22 @@ export class LearningComponent implements OnInit, AfterViewInit {
     // Initiate states
     this.GOAL_GRID = 22;
 
-    this.rewards = [];
+    this.REWARDS = [];
     for (let i = 0; i < 48; i++) {
-      this.rewards[i] = [];
+      this.REWARDS[i] = [];
     }
 
     for (let i = 0; i < 48; i++) {
       for (let j = 0; j < 4; j++) {
-        this.rewards[i][j] = -0.04;
+        this.REWARDS[i][j] = -0.04;
       }
     }
 
     // Getting to goal
-    this.rewards[30][0] = 10;
-    this.rewards[23][2] = 10;
-    this.rewards[14][1] = 10;
-    this.rewards[21][3] = 10;
+    this.REWARDS[30][0] = 10;
+    this.REWARDS[23][2] = 10;
+    this.REWARDS[14][1] = 10;
+    this.REWARDS[21][3] = 10;
 
 
     this.qValues = [];
@@ -250,19 +261,19 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   updateReward(nextDirr, nextGrid): void {
-    const r = this.rewards[this.currGrid][nextDirr];
+    const r = this.REWARDS[this.currGrid][nextDirr];
     const max = this.getMaxVal(nextGrid);
-    this.learningRate = Math.pow(this.success, -0.1);
+    this.LEARNING_RATE = Math.pow(this.success, -0.1);
 
-    this.qValues[this.currGrid][nextDirr] = this.qValues[this.currGrid][nextDirr] + this.learningRate * (r + this.discountFactor * max + this.qValues[this.currGrid][nextDirr]);
+    this.qValues[this.currGrid][nextDirr] = this.qValues[this.currGrid][nextDirr] + this.LEARNING_RATE * (r + this.DISCOUNT_FACTOR * max + this.qValues[this.currGrid][nextDirr]);
 
-    // this.qValues[this.currGrid][nextDirr] *= 1 - this.learningRate;
-    // this.qValues[this.currGrid][nextDirr] += this.learningRate * (r + this.discountFactor * max);
+    // this.qValues[this.currGrid][nextDirr] *= 1 - this.LEARNING_RATE;
+    // this.qValues[this.currGrid][nextDirr] += this.LEARNING_RATE * (r + this.DISCOUNT_FACTOR * max);
 
   }
 
   // TODO This method works in a stupid way
-  getVaildDirr(): [number] {
+  getVaildDirr(): any[] {
     const validDirr = [];
     switch (this.currGrid) {
       case 0: {
