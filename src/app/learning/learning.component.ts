@@ -37,7 +37,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   readonly DISCOUNT_FACTOR: number;
 
-  success = 1;
+  success: number;
 
   // Controls: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
@@ -46,6 +46,8 @@ export class LearningComponent implements OnInit, AfterViewInit {
     this.playerX = 0;
     this.playerY = 0;
     this.currGrid = 0;
+
+    this.success = 1;
 
     this.LEARNING_RATE = 1;
     this.DISCOUNT_FACTOR = 0.3;
