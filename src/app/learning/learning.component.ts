@@ -47,6 +47,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
       }
     }
 
+    // Getting to goal
     this.rewards[30][0] = 10;
     this.rewards[23][2] = 10;
     this.rewards[14][1] = 10;
@@ -72,7 +73,13 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     const ctx = this.context;
 
-    ctx.fillStyle = 'red';
+    // Initiate goal field
+    ctx.fillStyle = 'green';
+
+    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), this.width, this.heigth);
+
+    // Initiate walls
+    ctx.fillStyle = 'black';
 
     // First row
     ctx.fillRect(this.getXGridCoord(4), this.getYGridCoord(0), this.width, this.heigth);
@@ -109,11 +116,10 @@ export class LearningComponent implements OnInit, AfterViewInit {
       this.currGrid = 0;
 
       this.restart = !this.restart;
-    } else {
-      if (this.currGrid === 22) {
+    } else if (this.currGrid === 22) {
         this.restart = true;
         this.success += 1;
-      } else {
+    } else {
         const nextDirection = this.getNextDirection();
         const nextGrid = this.currGrid + this.stepCorrection(nextDirection);
 
@@ -121,15 +127,12 @@ export class LearningComponent implements OnInit, AfterViewInit {
         this.updateReward(nextDirection, nextGrid);
 
         this.currGrid = nextGrid;
-      }
     }
+
     let ctx = this.context;
 
     ctx.clearRect(0, 0, 200, 150);
-    // Initiate starting field
-    ctx.fillStyle = 'green';
 
-    ctx.fillRect(this.getXGridCoord(6), this.getYGridCoord(2), this.width, this.heigth);
     // Draw player
     this.playerY = this.gridToYpos(this.currGrid);
 
