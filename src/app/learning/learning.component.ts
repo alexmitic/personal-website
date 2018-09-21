@@ -36,7 +36,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   success = 1;
 
-  // Constrols: Up = 0, Down = 1, Left: 2, Right = 3
+  // Controls: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
 
     // Initiate colors
@@ -82,7 +82,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     const canvas = this.myCanvas.nativeElement;
     this.context = canvas.getContext('2d');
 
@@ -124,7 +124,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     this.tick();
   }
 
-  tick() {
+  tick(): void {
     const ctx = this.context;
 
     let nextGrid: number;
@@ -159,7 +159,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getXGridCoord(x) {
+  getXGridCoord(x): number {
     let xPos = 0;
 
     for (let i = 0; i < x; i++) {
@@ -169,7 +169,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     return xPos;
   }
 
-  getYGridCoord(y) {
+  getYGridCoord(y): number {
     let yPos = 0;
 
     for (let i = 0; i < y; i++) {
@@ -179,7 +179,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     return yPos;
   }
 
-  getNextDirection() {
+  getNextDirection(): number {
     const validDirr = this.getVaildDirr();
 
     const values = this.qValues[this.currGrid];
@@ -197,7 +197,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     return direction;
   }
 
-  getMaxVal(currGrid) {
+  getMaxVal(currGrid): number {
     const validDirr = this.getVaildDirr();
 
     const values = this.qValues[currGrid];
@@ -211,7 +211,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     return max;
   }
 
-  stepCorrection(direction) {
+  stepCorrection(direction): number {
     if (direction === 0) {
       return -8;
     } else if (direction === 1) {
@@ -223,7 +223,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
   }
 
-  gridToYpos() {
+  gridToYpos(): number {
     let yPos = 0;
     for (let i = 8; i < 49; i += 8) {
       if (this.currGrid < i) {
@@ -233,11 +233,11 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
   }
 
-  gridToXpos() {
+  gridToXpos(): number {
     return this.currGrid % 8;
   }
 
-  wait(ms) {
+  wait(ms): void {
     const start = new Date().getTime();
     let end = start;
     while (end < start + ms) {
@@ -245,11 +245,11 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
   }
 
-  randomNum(high) {
+  randomNum(high): number {
     return Math.floor(Math.random() * (high + 1));
   }
 
-  updateReward(nextDirr, nextGrid) {
+  updateReward(nextDirr, nextGrid): void {
     const r = this.rewards[this.currGrid][nextDirr];
     const max = this.getMaxVal(nextGrid);
     this.learningRate = Math.pow(this.success, -0.1);
@@ -261,7 +261,8 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   }
 
-  getVaildDirr() {
+  // TODO This method works in a stupid way
+  getVaildDirr(): [number] {
     const validDirr = [];
     switch (this.currGrid) {
       case 0: {
@@ -427,13 +428,13 @@ export class LearningComponent implements OnInit, AfterViewInit {
     return validDirr;
   }
 
-  fillCurrentRect(color: string) {
+  fillCurrentRect(color: string): void {
     const ctx = this.context;
     ctx.fillStyle = color;
 
     ctx.fillRect(this.getXGridCoord(this.playerX), this.getYGridCoord(this.playerY), this.WIDTH, this.HEIGHT);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 }
