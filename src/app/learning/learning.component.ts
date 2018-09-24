@@ -7,8 +7,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 })
 export class LearningComponent implements OnInit, AfterViewInit {
 
-  // TODO Valid directions should be some kind of hashmap (or similar structure) instead of the current switch statement
-  // TODO Automatise the creating of the maze so that you only need to set the girds of walls and goal.
+  // TODO Randomize creation of walls so that there are different walls each refresh
 
   context: CanvasRenderingContext2D;
   @ViewChild('canvas') maze;
@@ -94,6 +93,31 @@ export class LearningComponent implements OnInit, AfterViewInit {
         this.qValues[i][j] = 0;
       }
     }
+
+    // Initiate valid directions
+    this.VALID_DIRECTIONS = [];
+
+    for (let i = 0; i < 48; i++) {
+      if (i === 0) { // Top left corner
+        this.VALID_DIRECTIONS[i] = [1, 3];
+      } else if (i === 7) { // Top right corner
+        this.VALID_DIRECTIONS[i] = [1, 2];
+      } else if (i === 40) { // Bottom left corner
+        this.VALID_DIRECTIONS[i] = [0, 3];
+      } else if (i === 47) { // Bottom right corner
+        this.VALID_DIRECTIONS[i] = [0, 2];
+      } else if (i < 8) { // Top row
+        this.VALID_DIRECTIONS[i] = [1, 2, 3];
+      } else if (i > 39) { // Bottom row
+        this.VALID_DIRECTIONS[i] = [0, 2, 3];
+      } else if (i % 8 === 0) { // Left wall
+        this.VALID_DIRECTIONS[i] = [0, 1, 3];
+      } else if (i % 7 === 0) { // Right wall
+        this.VALID_DIRECTIONS[i] = [0, 1, 2];
+      } else {
+        this.VALID_DIRECTIONS[i] = [0, 1, 2, 3];
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -110,33 +134,9 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     ctx.fillRect(this.getXGridCord(this.GOAL_GRID), this.getYGridCord(this.GOAL_GRID), this.WIDTH, this.HEIGHT);
 
-    // Initiate walls
-    ctx.fillStyle = this.WALL_COLOR;
+    this.addWall(17);
 
-    // // First row
-    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(5), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(6), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(7), this.getYGridCord(0), this.WIDTH, this.HEIGHT);
-//
-    // // Second row
-    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(1), this.WIDTH, this.HEIGHT);
-//
-    // // Third row
-    // ctx.fillRect(this.getXGridCord(0), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(1), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(2), this.WIDTH, this.HEIGHT);
-//
-    // // Fourth row
-    // ctx.fillRect(this.getXGridCord(1), this.getYGridCord(3), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(3), this.WIDTH, this.HEIGHT);
-//
-    // // Fifth row
-    // ctx.fillRect(this.getXGridCord(1), this.getYGridCord(4), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(2), this.getYGridCord(4), this.WIDTH, this.HEIGHT);
-    // ctx.fillRect(this.getXGridCord(4), this.getYGridCord(4), this.WIDTH, this.HEIGHT);
-
+    console.log(this.VALID_DIRECTIONS);
 
     this.tick();
   }
@@ -187,7 +187,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   getMaxVal(grid): number {
-    const validDirr = this.getVaildDirr();
+    const validDirr = this.VALID_DIRECTIONS[this.currGrid];
 
     const values = this.qValues[grid];
     let max = values[validDirr[0]];
@@ -198,6 +198,38 @@ export class LearningComponent implements OnInit, AfterViewInit {
       }
     }
     return max;
+  }
+
+  addWall(grid: number): void {
+    this.fillRect(grid, this.WALL_COLOR);
+
+    if (grid - 8 >= 0) { // Remove access to wall from top
+      const index = this.VALID_DIRECTIONS[grid - 8].indexOf(1);
+      if (index > -1) {
+        this.VALID_DIRECTIONS[grid - 8].splice(index, 1);
+      }
+    }
+
+    if (grid + 8 < 48) { // Remove access to wall from bottom
+      const index = this.VALID_DIRECTIONS[grid + 8].indexOf(0);
+      if (index > -1) {
+        this.VALID_DIRECTIONS[grid + 8].splice(index, 1);
+      }
+    }
+
+    if (grid - 1 >= 0) { // Remove access to wall from left
+      const index = this.VALID_DIRECTIONS[grid - 1].indexOf(3);
+      if (index > -1) {
+        this.VALID_DIRECTIONS[grid - 1].splice(index, 1);
+      }
+    }
+
+    if (grid + 1 < 48) { // Remove access to wall from right
+      const index = this.VALID_DIRECTIONS[grid + 1].indexOf(2);
+      if (index > -1) {
+        this.VALID_DIRECTIONS[grid + 1].splice(index, 1);
+      }
+    }
   }
 
   fillRect(grid: number, color: string): void {
@@ -216,7 +248,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   getNextDirection(): number {
-    const validDirr = this.getVaildDirr();
+    const validDirr = this.VALID_DIRECTIONS[this.currGrid];
 
     const values = this.qValues[this.currGrid];
     const index = this.randomNum(validDirr.length - 1);
@@ -256,180 +288,6 @@ export class LearningComponent implements OnInit, AfterViewInit {
       return -1;
     } else {
       return 1;
-    }
-  }
-
-  getVaildDirr(): any[] {
-    const validDirr = [];
-    switch (this.currGrid) {
-      case 0: {
-        validDirr.push(1);
-        validDirr.push(3);
-        break;
-      }
-
-      case 7: {
-        validDirr.push(1);
-        validDirr.push(2);
-        break;
-      }
-
-      case 40: {
-        validDirr.push(0);
-        validDirr.push(3);
-        break;
-      }
-
-      case 47: {
-        validDirr.push(0);
-        validDirr.push(2);
-        break;
-      }
-
-      // case 3: {
-      //   validDirr.push(1);
-      //   validDirr.push(2);
-      //   break;
-      // }
-      //
-      // case 8: {
-      //   validDirr.push(0);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 9: {
-      //   validDirr.push(0);
-      //   validDirr.push(2);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 11: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   validDirr.push(2);
-      //   break;
-      // }
-      //
-      // case 13: {
-      //   validDirr.push(1);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 14: {
-      //   validDirr.push(1);
-      //   validDirr.push(2);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 15: {
-      //   validDirr.push(1);
-      //   validDirr.push(2);
-      //   break;
-      // }
-      //
-      // case 18: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 19: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   validDirr.push(2);
-      //   break;
-      // }
-      //
-      // case 21: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 24: {
-      //   validDirr.push(1);
-      //   break;
-      // }
-      //
-      // case 26: {
-      //   validDirr.push(0);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 27: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   validDirr.push(2);
-      //   break;
-      // }
-      //
-      // case 29: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   validDirr.push(3);
-      //   break;
-      // }
-      //
-      // case 32: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   break;
-      // }
-      //
-      // case 35: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   break;
-      // }
-      //
-      // case 37: {
-      //   validDirr.push(0);
-      //   validDirr.push(1);
-      //   validDirr.push(3);
-      //   break;
-      // }
-
-      default: {
-        if (this.currGrid < 8) {
-          validDirr.push(1);
-          validDirr.push(2);
-          validDirr.push(3);
-        } else if (this.currGrid > 39) {
-          validDirr.push(0);
-          validDirr.push(2);
-          validDirr.push(3);
-        } else if (this.currGrid % 8 === 0) {
-          validDirr.push(0);
-          validDirr.push(1);
-          validDirr.push(3);
-        } else if (this.currGrid % 7 === 0) {
-          validDirr.push(0);
-          validDirr.push(1);
-          validDirr.push(2);
-        } else {
-          validDirr.push(0);
-          validDirr.push(1);
-          validDirr.push(2);
-          validDirr.push(3);
-        }
-      }
-    }
-
-    return validDirr;
-  }
-
-  wait(ms): void {
-    const start = new Date().getTime();
-    let end = start;
-    while (end < start + ms) {
-      end = new Date().getTime();
     }
   }
 
