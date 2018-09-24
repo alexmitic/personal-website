@@ -8,6 +8,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 export class LearningComponent implements OnInit, AfterViewInit {
 
   // TODO Randomize creation of walls so that there are different walls each refresh
+  // TODO Automatically generate rewards instead of setting values manually in rewards matrix
 
   context: CanvasRenderingContext2D;
   @ViewChild('canvas') maze;
