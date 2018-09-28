@@ -42,15 +42,13 @@ export class LearningComponent implements OnInit, AfterViewInit {
   // Game values
   currGrid: number;
 
-  LEARNING_RATE: number; // Learning rate is not readonly as it changes during the game
+  readonly LEARNING_RATE: number; // Learning rate is not readonly as it changes during the game
 
-  DISCOUNT_FACTOR: number;
+  readonly DISCOUNT_FACTOR: number;
 
   success: number;
 
   toRandom: number;
-
-  printed = false;
 
   // Controls: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
