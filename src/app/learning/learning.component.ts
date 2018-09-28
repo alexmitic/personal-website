@@ -6,7 +6,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./learning.component.css']
 })
 export class LearningComponent implements OnInit, AfterViewInit {
-  
+
   // TODO Randomize creation of walls so that there are different walls each refresh
 
   context: CanvasRenderingContext2D;
@@ -92,23 +92,23 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     for (let i = 0; i < 48; i++) {
       if (i === 0) { // Top left corner
-        this.VALID_DIRECTIONS[i] = [1, 3];
+        this.VALID_DIRECTIONS[i] = [this.DOWN, this.RIGHT];
       } else if (i === 7) { // Top right corner
-        this.VALID_DIRECTIONS[i] = [1, 2];
+        this.VALID_DIRECTIONS[i] = [this.DOWN, this.LEFT];
       } else if (i === 40) { // Bottom left corner
-        this.VALID_DIRECTIONS[i] = [0, 3];
+        this.VALID_DIRECTIONS[i] = [this.UP, this.RIGHT];
       } else if (i === 47) { // Bottom right corner
-        this.VALID_DIRECTIONS[i] = [0, 2];
+        this.VALID_DIRECTIONS[i] = [this.UP, this.LEFT];
       } else if (i < 8) { // Top row
-        this.VALID_DIRECTIONS[i] = [1, 2, 3];
+        this.VALID_DIRECTIONS[i] = [this.DOWN, this.LEFT, this.RIGHT];
       } else if (i > 39) { // Bottom row
-        this.VALID_DIRECTIONS[i] = [0, 2, 3];
+        this.VALID_DIRECTIONS[i] = [this.UP, this.LEFT, this.RIGHT];
       } else if (i % 8 === 0) { // Left wall
-        this.VALID_DIRECTIONS[i] = [0, 1, 3];
+        this.VALID_DIRECTIONS[i] = [this.UP, this.DOWN, this.RIGHT];
       } else if (i % 7 === 0) { // Right wall
-        this.VALID_DIRECTIONS[i] = [0, 1, 2];
+        this.VALID_DIRECTIONS[i] = [this.UP, this.DOWN, this.LEFT];
       } else {
-        this.VALID_DIRECTIONS[i] = [0, 1, 2, 3];
+        this.VALID_DIRECTIONS[i] = [this.UP, this.DOWN, this.LEFT, this.RIGHT];
       }
     }
   }
