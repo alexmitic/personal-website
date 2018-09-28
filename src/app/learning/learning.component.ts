@@ -127,7 +127,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     ctx.fillRect(this.getXGridCord(this.GOAL_GRID), this.getYGridCord(this.GOAL_GRID), this.WIDTH, this.HEIGHT);
 
-    this.addWall(17);
+    this.randomizeWalls(3);
 
     console.log(this.VALID_DIRECTIONS);
 
@@ -252,6 +252,17 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     if (this.GOAL_GRID + 1 < 48) { // Reward from going right to goal
       this.REWARDS[this.GOAL_GRID + 1][this.UP] = 10;
+    }
+  }
+
+  randomizeWalls(numWalls): void {
+    let grid: number;
+    for (let i = 0; i < numWalls; i++) {
+      grid = this.randomNum(49);
+      while (grid < 7 || grid % 8 === 0 || grid % 7 === 0 || grid > 40 || grid === this.GOAL_GRID) {
+        grid = this.randomNum(49);
+      }
+      this.addWall(grid);
     }
   }
 
