@@ -44,23 +44,29 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
   LEARNING_RATE: number; // Learning rate is not readonly as it changes during the game
 
-  readonly DISCOUNT_FACTOR: number;
+  DISCOUNT_FACTOR: number;
 
   success: number;
+
+  toRandom: number;
+
+  printed = false;
 
   // Controls: Up = 0, Down = 1, Left: 2, Right = 3
   constructor() {
 
     // Initiate game values
     this.currGrid = 0;
-    this.success = 1;
+    this.success = 0;
+    this.toRandom = 1;
 
-    this.LEARNING_RATE = 1;
-    this.DISCOUNT_FACTOR = 0.3;
+    this.LEARNING_RATE = 0.8;
+    this.DISCOUNT_FACTOR = 0.5;
 
     // Initiate colors
     this.GOAL_COLOR = 'green';
-    this.PLAYER_COLOR = this.WALL_COLOR = 'black';
+    this.PLAYER_COLOR = 'red';
+    this.WALL_COLOR = 'black';
     this.DEFAULT_BOX_COLOR = 'white';
 
     // Initiate dimensions
@@ -105,7 +111,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
         this.VALID_DIRECTIONS[i] = [this.UP, this.LEFT, this.RIGHT];
       } else if (i % 8 === 0) { // Left wall
         this.VALID_DIRECTIONS[i] = [this.UP, this.DOWN, this.RIGHT];
-      } else if (i % 7 === 0) { // Right wall
+      } else if ((i - 7) % 8 === 0) { // Right wall
         this.VALID_DIRECTIONS[i] = [this.UP, this.DOWN, this.LEFT];
       } else {
         this.VALID_DIRECTIONS[i] = [this.UP, this.DOWN, this.LEFT, this.RIGHT];
@@ -127,7 +133,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     ctx.fillRect(this.getXGridCord(this.GOAL_GRID), this.getYGridCord(this.GOAL_GRID), this.WIDTH, this.HEIGHT);
 
-    this.randomizeWalls(3);
+    // this.randomizeWalls(2);
 
     this.tick();
   }
@@ -136,18 +142,26 @@ export class LearningComponent implements OnInit, AfterViewInit {
     const ctx = this.context;
 
     let nextGrid: number;
+    let nextDirection = 0;
     let reverseColor: string;
 
     if (this.currGrid === this.GOAL_GRID) {
       nextGrid = 0;
       reverseColor = this.GOAL_COLOR;
+      this.success++;
+
+      if (this.toRandom > 0) {
+        this.toRandom -= 0.02;
+      }
+
     } else {
       reverseColor = this.DEFAULT_BOX_COLOR;
 
-      const nextDirection = this.getNextDirection();
+      nextDirection = this.getNextDirection();
       nextGrid = this.currGrid + this.stepCorrection(nextDirection);
+    }
 
-      // Update qValue
+    if (this.success <= 50) {
       this.updateReward(nextDirection, nextGrid);
     }
 
@@ -158,7 +172,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
     this.currGrid = nextGrid;
 
     // Draw player
-    this.fillRect(this.currGrid, 'black');
+    this.fillRect(this.currGrid, this.PLAYER_COLOR);
 
     requestAnimationFrame(() => {
       this.tick();
@@ -168,13 +182,16 @@ export class LearningComponent implements OnInit, AfterViewInit {
   updateReward(nextDirr, nextGrid): void {
     const r = this.REWARDS[this.currGrid][nextDirr];
     const max = this.getMaxVal(nextGrid);
-    this.LEARNING_RATE = Math.pow(this.success, -0.1);
+    // this.LEARNING_RATE = Math.pow(this.success, -0.1);
 
-    this.qValues[this.currGrid][nextDirr] = this.qValues[this.currGrid][nextDirr] + this.LEARNING_RATE * (r + this.DISCOUNT_FACTOR * max + this.qValues[this.currGrid][nextDirr]);
+    let qTarget: number;
+    if (nextGrid === this.GOAL_GRID) {
+      qTarget = r;
+    } else {
+      qTarget = r + this.DISCOUNT_FACTOR * max;
+    }
 
-    // this.qValues[this.currGrid][nextDirr] *= 1 - this.LEARNING_RATE;
-    // this.qValues[this.currGrid][nextDirr] += this.LEARNING_RATE * (r + this.DISCOUNT_FACTOR * max);
-
+    this.qValues[this.currGrid][nextDirr] += this.LEARNING_RATE * (qTarget - this.qValues[this.currGrid][nextDirr]);
   }
 
   getMaxVal(grid): number {
@@ -230,7 +247,7 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     for (let i = 0; i < 48; i++) {
       for (let j = 0; j < 4; j++) {
-        this.REWARDS[i][j] = -0.04;
+        this.REWARDS[i][j] = 0;
       }
     }
 
@@ -249,16 +266,21 @@ export class LearningComponent implements OnInit, AfterViewInit {
     }
 
     if (this.GOAL_GRID + 1 < 48) { // Reward from going right to goal
-      this.REWARDS[this.GOAL_GRID + 1][this.UP] = 10;
+      this.REWARDS[this.GOAL_GRID + 1][this.LEFT] = 10;
     }
+
+    this.REWARDS[this.GOAL_GRID][this.UP] = 0;
+    this.REWARDS[this.GOAL_GRID][this.DOWN] = 0;
+    this.REWARDS[this.GOAL_GRID][this.LEFT] = 0;
+    this.REWARDS[this.GOAL_GRID][this.RIGHT] = 0;
   }
 
   randomizeWalls(numWalls): void {
     let grid: number;
     for (let i = 0; i < numWalls; i++) {
       grid = this.randomNum(49);
-      while (grid < 7 || grid % 8 === 0 || grid % 7 === 0 || grid > 40 || grid === this.GOAL_GRID) {
-        grid = this.randomNum(49);
+      while (grid < 7 || grid % 8 === 0 || (grid - 7) % 8 === 0 || grid > 40 || grid === this.GOAL_GRID) {
+        grid = this.randomNum(47);
       }
       this.addWall(grid);
     }
@@ -285,16 +307,19 @@ export class LearningComponent implements OnInit, AfterViewInit {
     const values = this.qValues[this.currGrid];
     const index = this.randomNum(validDirr.length - 1);
     let direction = validDirr[index];
-    let max = values[direction];
 
-    for (let i = 0; i < validDirr.length; i++) {
-      if (values[validDirr[i]] > max) {
-        max = values[validDirr[i]];
-        direction = validDirr[i];
+    if (Math.random() >= this.toRandom) {
+      let max = values[direction];
+      for (let i = 0; i < validDirr.length; i++) {
+        if (values[validDirr[i]] > max) {
+          max = values[validDirr[i]];
+          direction = validDirr[i];
+        }
       }
+      return direction;
+    } else {
+      return direction;
     }
-
-    return direction;
   }
 
   gridToYpos(grid: number): number {
