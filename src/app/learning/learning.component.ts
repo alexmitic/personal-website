@@ -129,8 +129,6 @@ export class LearningComponent implements OnInit, AfterViewInit {
 
     this.randomizeWalls(3);
 
-    console.log(this.VALID_DIRECTIONS);
-
     this.tick();
   }
 
