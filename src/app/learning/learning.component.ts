@@ -6,9 +6,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./learning.component.css']
 })
 export class LearningComponent implements OnInit, AfterViewInit {
-
+  
   // TODO Randomize creation of walls so that there are different walls each refresh
-  // TODO Automatically generate rewards instead of setting values manually in rewards matrix
 
   context: CanvasRenderingContext2D;
   @ViewChild('canvas') maze;
@@ -26,6 +25,12 @@ export class LearningComponent implements OnInit, AfterViewInit {
   // States
   readonly GOAL_GRID: number;
   readonly REWARDS: number[][];
+
+  // Directions
+  readonly UP = 0;
+  readonly DOWN = 1;
+  readonly LEFT = 2;
+  readonly RIGHT = 3;
 
   VALID_DIRECTIONS: number[][]; // Valid directions depends on the maze and is therefore not readonly
 
@@ -65,22 +70,9 @@ export class LearningComponent implements OnInit, AfterViewInit {
     // Initiate states
     this.GOAL_GRID = 22;
 
+    // Set rewards
     this.REWARDS = [];
-    for (let i = 0; i < 48; i++) {
-      this.REWARDS[i] = [];
-    }
-
-    for (let i = 0; i < 48; i++) {
-      for (let j = 0; j < 4; j++) {
-        this.REWARDS[i][j] = -0.04;
-      }
-    }
-
-    // Getting to goal
-    this.REWARDS[30][0] = 10;
-    this.REWARDS[23][2] = 10;
-    this.REWARDS[14][1] = 10;
-    this.REWARDS[21][3] = 10;
+    this.setRewards();
 
 
     this.qValues = [];
@@ -205,31 +197,61 @@ export class LearningComponent implements OnInit, AfterViewInit {
     this.fillRect(grid, this.WALL_COLOR);
 
     if (grid - 8 >= 0) { // Remove access to wall from top
-      const index = this.VALID_DIRECTIONS[grid - 8].indexOf(1);
+      const index = this.VALID_DIRECTIONS[grid - 8].indexOf(this.DOWN);
       if (index > -1) {
         this.VALID_DIRECTIONS[grid - 8].splice(index, 1);
       }
     }
 
     if (grid + 8 < 48) { // Remove access to wall from bottom
-      const index = this.VALID_DIRECTIONS[grid + 8].indexOf(0);
+      const index = this.VALID_DIRECTIONS[grid + 8].indexOf(this.UP);
       if (index > -1) {
         this.VALID_DIRECTIONS[grid + 8].splice(index, 1);
       }
     }
 
     if (grid - 1 >= 0) { // Remove access to wall from left
-      const index = this.VALID_DIRECTIONS[grid - 1].indexOf(3);
+      const index = this.VALID_DIRECTIONS[grid - 1].indexOf(this.RIGHT);
       if (index > -1) {
         this.VALID_DIRECTIONS[grid - 1].splice(index, 1);
       }
     }
 
     if (grid + 1 < 48) { // Remove access to wall from right
-      const index = this.VALID_DIRECTIONS[grid + 1].indexOf(2);
+      const index = this.VALID_DIRECTIONS[grid + 1].indexOf(this.LEFT);
       if (index > -1) {
         this.VALID_DIRECTIONS[grid + 1].splice(index, 1);
       }
+    }
+  }
+
+  setRewards(): void {
+    for (let i = 0; i < 48; i++) {
+      this.REWARDS[i] = [];
+    }
+
+    for (let i = 0; i < 48; i++) {
+      for (let j = 0; j < 4; j++) {
+        this.REWARDS[i][j] = -0.04;
+      }
+    }
+
+    // Getting to goal
+
+    if (this.GOAL_GRID - 8 >= 0) { // Reward for going down to goal
+      this.REWARDS[this.GOAL_GRID - 8][this.DOWN] = 10;
+    }
+
+    if (this.GOAL_GRID + 8 < 48) { // Reward from going up to goal
+      this.REWARDS[this.GOAL_GRID + 8][this.UP] = 10;
+    }
+
+    if (this.GOAL_GRID - 1 >= 0) { // Reward from going right to goal
+      this.REWARDS[this.GOAL_GRID - 1][this.RIGHT] = 10;
+    }
+
+    if (this.GOAL_GRID + 1 < 48) { // Reward from going right to goal
+      this.REWARDS[this.GOAL_GRID + 1][this.UP] = 10;
     }
   }
 
@@ -281,11 +303,11 @@ export class LearningComponent implements OnInit, AfterViewInit {
   }
 
   stepCorrection(direction): number {
-    if (direction === 0) {
+    if (direction === this.UP) {
       return -8;
-    } else if (direction === 1) {
+    } else if (direction === this.DOWN) {
       return 8;
-    } else if (direction === 2) {
+    } else if (direction === this.LEFT) {
       return -1;
     } else {
       return 1;
