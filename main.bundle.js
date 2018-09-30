@@ -183,7 +183,6 @@ var LearningComponent = (function () {
         this.DOWN = 1;
         this.LEFT = 2;
         this.RIGHT = 3;
-        this.printed = false;
         // Initiate game values
         this.currGrid = 0;
         this.success = 0;
@@ -254,8 +253,6 @@ var LearningComponent = (function () {
         ctx.fillStyle = this.GOAL_COLOR;
         ctx.fillRect(this.getXGridCord(this.GOAL_GRID), this.getYGridCord(this.GOAL_GRID), this.WIDTH, this.HEIGHT);
         // this.randomizeWalls(2);
-        console.log(this.VALID_DIRECTIONS);
-        console.log(this.REWARDS);
         this.tick();
     };
     LearningComponent.prototype.tick = function () {
@@ -279,7 +276,6 @@ var LearningComponent = (function () {
         }
         if (this.success <= 50) {
             this.updateReward(nextDirection, nextGrid);
-            console.log("Updating");
         }
         // Reverse color of current box
         this.fillRect(this.currGrid, reverseColor);
@@ -403,11 +399,9 @@ var LearningComponent = (function () {
                     direction = validDirr[i];
                 }
             }
-            console.log("Max");
             return direction;
         }
         else {
-            console.log("Random");
             return direction;
         }
     };
@@ -591,8 +585,13 @@ QuicksortComponent = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `.angular-cli.json`.
+// The file contents for the current environment will overwrite these during build.
 var environment = {
-    production: true
+    production: false
 };
 //# sourceMappingURL=environment.js.map
 
@@ -624,7 +623,7 @@ exports = module.exports = __webpack_require__(17)();
 
 
 // module
-exports.push([module.i, "h5 {\n  font-family: 'Roboto', sans-serif;\n  font-size: 1.2em;\n  margin-top: 3vh;\n}\n\n.btn {\n  font-family: 'Roboto', sans-serif;\n  font-size: 1.7em;\n  font-weight: 500;\n\n  color: orangered;\n  background-color: white;\n  border-color: white;\n}\n\n#margin-button {\n  margin-top: 8vh;\n}\n\n#margin-button:hover {\n  transform: scale(1.1);\n}\n\n#links-margin{\n  margin-top: 8vh;\n}\n\n#scale-icon {\n  transform: scale(0.85);\n}\n\n.same-line {\n  display: inline;\n}\n\n#space-icons {\n  margin-right: 3vw;\n  margin-left: 3vw;\n}\n\n#margin-facts {\n  margin-top: 7vh;\n}\n\n#margin-links {\n  margin-top: 3vh;\n}\n\n.color-scale-git:hover {\n  transform: scale(1.15);\n  color: #6E5494;\n}\n\n.color-scale-linkedin:hover {\n  transform: scale(1.15);\n  color: #0077B5;\n}\n\n.color-scale-pdf:hover {\n  transform: scale(1) !important;\n  color: #FF0000;\n}\n", ""]);
+exports.push([module.i, "h5 {\n  font-family: 'Roboto', sans-serif;\n  font-size: 1.2em;\n  margin-top: 3vh;\n}\n\n.btn {\n  font-family: 'Roboto', sans-serif;\n  font-size: 1.7em;\n  font-weight: 500;\n\n  color: orangered;\n  background-color: white;\n  border-color: white;\n}\n\n#margin-button {\n  margin-top: 8vh;\n}\n\n#margin-button:hover {\n  transform: scale(1.1);\n}\n\n#links-margin{\n  margin-top: 8vh;\n}\n\n#scale-icon {\n  transform: scale(0.85);\n}\n\n.same-line {\n  display: inline;\n}\n\n#space-icons {\n  margin-right: 3vw;\n  margin-left: 3vw;\n}\n\n#margin-facts {\n  margin-top: 7vh;\n}\n\n#margin-links {\n  margin-top: 3vh;\n}\n\n.color-scale-git:hover {\n  transform: scale(1.15);\n  color: #6E5494;\n}\n\n.color-scale-linkedin:hover {\n  transform: scale(1.15);\n  color: #0077B5;\n}\n\n.color-scale-pdf:hover {\n  transform: scale(1) !important;\n  color: #FF0000;\n}\n\na {\n  color: black;\n}\n", ""]);
 
 // exports
 
@@ -927,21 +926,21 @@ webpackContext.id = 364;
 /***/ 387:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid full\">\n  <h1 class=\"text-center\">Aleksandar Mitic</h1>\n  <div class=\"row\">\n    <!--<div class=\"col-md-4\">-->\n      <!--<app-quicksort></app-quicksort>-->\n    <!--</div>-->\n    <!--<div class=\"col-md-4\" style=\"border-left: 1px solid grey; border-right: 1px solid grey\">\n      <app-center-part></app-center-part>\n    </div>-->\n    <div class=\"col-md-4\">\n      <app-learning></app-learning>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container-fluid full\">\n  <h1 class=\"text-center\" style=\"font-size: 600%; margin-bottom: 15vh;\">Aleksandar Mitic - Developer</h1>\n  <div class=\"row\">\n    <!--<div class=\"col-md-4\">-->\n      <!--<app-quicksort></app-quicksort>-->\n    <!--</div>-->\n\n    <div class=\"col-md-4 col-sm-offset-2\" style=\"border-right: 1px solid grey;\">\n      <app-learning></app-learning>\n    </div>\n\n    <div class=\"col-md-4\">\n      <app-center-part></app-center-part>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 388:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center\" id=\"margin-facts\">\n  <h5 class=\"text-center\">Studies CompSci in Sweden.</h5>\n  <h5 class=\"text-center\">Likes to program.</h5>\n  <h5 class=\"text-center\">Loves to talk about cool programingstuff.</h5>\n</div>\n\n<button class=\"btn btn-danger center-block\" id=\"margin-button\">\n  <i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n  Contact\n</button>\n\n<h5 class=\"text-center\" id=\"links-margin\">Other possibly intersting links.</h5>\n\n<div class=\"text-center\" id=\"margin-links\">\n  <div class=\"same-line\">\n    <i class=\"fa fa-github fa-3x color-scale-git\" aria-hidden=\"true\"> </i>\n  </div>\n  <div class=\"same-line\">\n    <i class=\"fa fa-linkedin-square fa-3x color-scale-linkedin\" id=\"space-icons\" aria-hidden=\"true\"> </i>\n  </div>\n  <div class=\"same-line\">\n    <i class=\"fa fa-file-pdf-o fa-3x color-scale-pdf\" id=\"scale-icon\" aria-hidden=\"true\"> </i>\n  </div>\n</div>\n"
+module.exports = "<div id=\"margin-facts\">\n  <h4 class=\"text-center\" style=\"text-decoration: underline;\">Other projects</h4>\n  <ol style=\"font-size: 16px; font-weight: 500;\" type=\"I\">\n    <li>Coda Easy - A  programing platform for children</li>\n    <li>Snakelike box AI</li>\n  </ol>\n</div>\n\n<button class=\"btn btn-danger center-block\" id=\"margin-button\">\n  <i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n  <a href=\"mailto:mitic.alex@hotmail.se\">\n    Contact\n  </a>\n</button>\n\n<div class=\"text-center\" id=\"margin-links\">\n  <div class=\"same-line\">\n    <a href=\"https://github.com/alexmitic\">\n      <i class=\"fa fa-github fa-2x color-scale-git\" aria-hidden=\"true\"></i>\n    </a>\n  </div>\n  <div class=\"same-line\">\n    <a href=\"https://www.linkedin.com/in/aleksandar-mitic-74164b135/\">\n      <i class=\"fa fa-linkedin-square fa-2x color-scale-linkedin\" id=\"space-icons\" aria-hidden=\"true\"> </i>\n    </a>\n  </div>\n  <div class=\"same-line\">\n    <a href=\"../../assets/Resume.pdf\">\n      <i class=\"fa fa-file-pdf-o fa-2x color-scale-pdf\" id=\"scale-icon\" aria-hidden=\"true\"> </i>\n    </a>\n  </div>\n</div>\n"
 
 /***/ }),
 
 /***/ 389:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center\" id=\"margin-facts\">\n  <h5>Machine learning is the thing rigth now.</h5>\n  <h5>So here's a box learning to navigate a maze </h5>\n</div>\n\n<div class=\"container-fluid\" id=\"maze\">\n  <canvas #canvas width=\"200\" height=\"150\" style=\"background:white; margin-top: 16.1vh; margin-left: 12vh; border: 1px solid black\"></canvas>\n</div>\n"
+module.exports = "<div class=\"text-center\" id=\"margin-facts\">\n  <h5>Machine learning is the thing rigth now.</h5>\n  <h5>So here's a box learning to navigate a maze </h5>\n</div>\n\n<div class=\"container-fluid\" id=\"maze\">\n  <canvas #canvas width=\"200\" height=\"150\" style=\"background:white; margin-top: 2.5vh; margin-left: 12vh; border: 1px solid black\"></canvas>\n</div>\n"
 
 /***/ }),
 
